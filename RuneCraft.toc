@@ -1,0 +1,8 @@
+## X-Curse-Packaged-Version: 0.50 first BETA
+## X-Curse-Project-Name: RuneCraft
+## X-Curse-Project-ID: runecraft
+
+Libs/Sol/LibStub.lua
+Libs/Sol/Sol.lua
+
+RuneCraft.xml
