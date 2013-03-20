@@ -49,7 +49,7 @@ Sol API:
 
 
 
-local VERSION = "24"
+local VERSION = "34"
 local Sol = LibStub:NewLibrary("Sol", VERSION)
 
 if not Sol then
@@ -75,6 +75,10 @@ end
 ---- If we're replacing the current Sol, unhook ReloadUI and Logout
 if _G.Sol and _G.Sol._help then
     UnHookReloadFunctions()
+    
+    if _G.Sol._help.GetOrigCancelLogout then
+        CancelLogout = _G.Sol._help.GetOrigCancelLogout
+    end
 end
 
 
@@ -128,12 +132,14 @@ function as they pertain to this one, as well.
 
 Parameters:
 + addonName      - Your addon's name
-+ frame          - Frame to fade
++ frame          - Frame to animate images on
 + images         - A list of texture paths
 + fps            - How many frames per second to use for the animation
                    Defaults to Sol.constants.DEFAULT_FPS
 + onUpdateFnName - The name of the OnUpdate handler to use (optional)
                    Defaults to <addonName>_OnUpdate
++ onAnimationEndFn - Function to call when the animation finishes
+
                    
 Returns:
 + true if the animation was setup successfully; else false
@@ -141,7 +147,7 @@ Returns:
 Post:
 + Calls frame.SetTexture for each image in the list; creates an image animation
 --]]
-Sol.animation.AnimateImage = function(addonName, frame, images, fps, onUpdateFnName)
+Sol.animation.AnimateImage = function(addonName, frame, images, fps, onUpdateFnName, onAnimationEndFn)
     if not frame or not frame.SetTexture or not addonName or 
         not images or not Sol.util.IsValidFrame(frame) then
         return false
@@ -157,6 +163,9 @@ Sol.animation.AnimateImage = function(addonName, frame, images, fps, onUpdateFnN
         imageIndex = imageIndex + 1
         if imageIndex > #images then
             Sol.timers.RemoveTimer(addonName, timerID)
+            if onAnimationEndFn then
+                onAnimationEndFn(addonName, timerID, frame)
+            end
         end
     end
     
@@ -180,6 +189,7 @@ Parameters:
                    Defaults to Sol.constants.DEFAULT_ANIMATION_TIME
 + onUpdateFnName - The name of the OnUpdate handler to use (optional)
                    Defaults to <addonName>_OnUpdate
++ onAnimationEndFn - Function to call when the animation finishes
                    
 Returns:
 + true if the animation was setup successfully; else false
@@ -187,7 +197,7 @@ Returns:
 Post:
 + The frame's alpha will gradually change until it gets to the 'fadeToAlpha' value
 --]]
-Sol.animation.Fade = function(addonName, frame, fadeToAlpha, fps, time, onUpdateFnName)
+Sol.animation.Fade = function(addonName, frame, fadeToAlpha, fps, time, onUpdateFnName, onAnimationEndFn)
     if not frame or not addonName or not Sol.util.IsValidFrame(frame) then
         return false
     end
@@ -197,7 +207,7 @@ Sol.animation.Fade = function(addonName, frame, fadeToAlpha, fps, time, onUpdate
     if not fps or fps <= 0 then
         fps = Sol.constants.DEFAULT_FPS
     end
-    if not fadeToAlpha or fadeToAlphpa < 0 or fadeToAlpha > 1 then
+    if not fadeToAlpha or fadeToAlpha < 0 or fadeToAlpha > 1 then
         fadeToAlpha = Sol.util.TernaryOp(frame:GetAlpha() > 0, 0, 1)
     end
     
@@ -206,6 +216,10 @@ Sol.animation.Fade = function(addonName, frame, fadeToAlpha, fps, time, onUpdate
         frame:SetAlpha(frame:GetAlpha() + alphaPerTick)
         if math.abs(frame:GetAlpha() - fadeToAlpha) < Sol.constants.FLOATING_PT_PRECISION then
             Sol.timers.RemoveTimer(addonName, timerID)
+            frame:SetAlpha(fadeToAlpha)
+            if onAnimationEndFn then
+                onAnimationEndFn(addonName, timerID, frame)
+            end
         end
     end
     
@@ -219,24 +233,25 @@ Note: This uses Sol.timers.ScheduleTimer. Please see the notes for that
 function as they pertain to this one, as well.
 
 Parameters:
-+ addonName      - Your addon's name
-+ frame          - Frame to fade
-+ moveToX        - The x position to gradually move toward. Defaults to 0
-+ moveToY        - The y position to gradually change toward. Defaults to 0
-+ fps            - How many frames per second to use for the animation
-                   Defaults to Sol.constants.DEFAULT_FPS
-+ time           - How much time to take for the animation
-                   Defaults to Sol.constants.DEFAULT_ANIMATION_TIME
-+ onUpdateFnName - The name of the OnUpdate handler to use (optional)
-                   Defaults to <addonName>_OnUpdate
-                   
++ addonName        - Your addon's name
++ frame            - Frame to move
++ moveToX          - The x position to gradually move toward. Defaults to 0
++ moveToY          - The y position to gradually change toward. Defaults to 0
++ fps              - How many frames per second to use for the animation
+                     Defaults to Sol.constants.DEFAULT_FPS
++ time             - How much time to take for the animation
+                     Defaults to Sol.constants.DEFAULT_ANIMATION_TIME
++ onUpdateFnName   - The name of the OnUpdate handler to use (optional)
+                     Defaults to <addonName>_OnUpdate
++ onAnimationEndFn - Function to call when the animation finishes
+
 Returns:
 + true if the animation was setup successfully; else false
 
 Post:
 + The frame will gradually move toward the specified position
 --]]
-Sol.animation.Move = function(addonName, frame, moveToX, moveToY, fps, time, onUpdateFnName)
+Sol.animation.Move = function(addonName, frame, moveToX, moveToY, fps, time, onUpdateFnName, onAnimationEndFn)
     if not frame or not addonName or not Sol.util.IsValidFrame(frame) then
         return false
     end
@@ -266,6 +281,9 @@ Sol.animation.Move = function(addonName, frame, moveToX, moveToY, fps, time, onU
             math.abs(y - moveToY) < Sol.constants.FLOATING_PT_PRECISION then
             
             Sol.timers.RemoveTimer(addonName, timerID)
+            if onAnimationEndFn then
+                onAnimationEndFn(addonName, timerID, frame)
+            end
         end
     end
     
@@ -280,7 +298,7 @@ function as they pertain to this one, as well.
 
 Parameters:
 + addonName      - Your addon's name
-+ frame          - Frame to fade
++ frame          - Frame to resize
 + sizeToWidth    - The width to gradually change toward (>= 0). Defaults to 0
 + sizeToHeight   - The height to gradually change toward (>= 0). Defaults to 0
 + fps            - How many frames per second to use for the animation
@@ -291,6 +309,7 @@ Parameters:
                    Will not work if frame width or height is <= 0
 + onUpdateFnName - The name of the OnUpdate handler to use (optional)
                    Defaults to <addonName>_OnUpdate
++ onAnimationEndFn - Function to call when the animation finishes
                    
 Returns:
 + true if the animation was setup successfully; else false
@@ -299,7 +318,7 @@ Post:
 + The frame's size (and optionally, its named children) will gradually change 
 until it gets to the specified value
 --]]
-Sol.animation.Resize = function(addonName, frame, sizeToWidth, sizeToHeight, fps, time, sizeChildren, onUpdateFnName)
+Sol.animation.Resize = function(addonName, frame, sizeToWidth, sizeToHeight, fps, time, sizeChildren, onUpdateFnName, onAnimationEndFn)
     if not frame or not addonName or not Sol.util.IsValidFrame(frame) then
         return false
     end
@@ -353,6 +372,10 @@ Sol.animation.Resize = function(addonName, frame, sizeToWidth, sizeToHeight, fps
             math.abs(frame:GetHeight() - sizeToHeight) < Sol.constants.FLOATING_PT_PRECISION then
             
             Sol.timers.RemoveTimer(addonName, timerID)
+            
+            if onAnimationEndFn then
+                onAnimationEndFn(addonName, timerID, frame)
+            end
         end
         if sizeChildren then
             Sol.data.frames.TraverseFrameHierarchy(traverseFn, frame)
@@ -360,6 +383,60 @@ Sol.animation.Resize = function(addonName, frame, sizeToWidth, sizeToHeight, fps
     end
     
     return nil ~= Sol.timers.ScheduleTimer(addonName, 0, fn, 1/fps, "AnimateSize", onUpdateFnName)
+end
+
+
+--[[
+Animates a scaling of a frame.
+
+Note: This uses Sol.timers.ScheduleTimer. Please see the notes for that
+function as they pertain to this one, as well.
+
+Parameters:
++ addonName      - Your addon's name
++ frame          - Frame to scale
++ scale          - The scale to end at (>= 0). Defaults to 0
++ fps            - How many frames per second to use for the animation
+                   Defaults to Sol.constants.DEFAULT_FPS
++ time           - How much time to take for the animation
+                   Defaults to Sol.constants.DEFAULT_ANIMATION_TIME
++ onUpdateFnName - The name of the OnUpdate handler to use (optional)
+                   Defaults to <addonName>_OnUpdate
++ onAnimationEndFn - Function to call when the animation finishes
+                   
+Returns:
++ true if the animation was setup successfully; else false
+
+Post:
++ The frame's scale will gradually change until it gets to the specified value
+--]]
+Sol.animation.Scale = function(addonName, frame, scale, fps, time, onUpdateFnName, onAnimationEndFn)
+    if not frame or not addonName or not Sol.util.IsValidFrame(frame) then
+        return false
+    end
+    if not time or time <= 0 then
+        time = Sol.constants.DEFAULT_ANIMATION_TIME
+    end
+    if not fps or fps <= 0 then
+        fps = Sol.constants.DEFAULT_FPS
+    end
+    if not scale or scale < 0 then
+        scale = Sol.util.TernaryOp(frame:GetScale() > 0, 0, 1)
+    end
+    
+    local scalePerTick = (scale - frame:GetScale()) / (fps * time)
+    local fn = function(addonName, timerID)
+        frame:SetScale(frame:GetScale() + scalePerTick)
+        if math.abs(frame:GetScale() - scale) < Sol.constants.FLOATING_PT_PRECISION then
+            Sol.timers.RemoveTimer(addonName, timerID)
+            frame:SetScale(scale)
+            if onAnimationEndFn then
+                onAnimationEndFn(addonName, timerID, frame)
+            end
+        end
+    end
+    
+    return nil ~= Sol.timers.ScheduleTimer(addonName, 0, fn, 1/fps, "AnimateScale", onUpdateFnName)
 end
 
 -------------------------------------------------------------------------------
@@ -418,7 +495,7 @@ end
 
 -- Converts specified percent (out of 1.0) color values to the equivalent RGB
 -- hex representation
-Sol.color.ColorValuesToHexColor = function(r, g, b)
+Sol.color.ColorValuesToHexColor = function(r, g, b, prefix)
     if not r or not g or not b 
         or type(r) ~= "number" 
         or type(g) ~= "number" 
@@ -428,7 +505,11 @@ Sol.color.ColorValuesToHexColor = function(r, g, b)
     r = Sol.color.PercentToHex(r)
     g = Sol.color.PercentToHex(g)
     b = Sol.color.PercentToHex(b)
-    return r .. g .. b
+    if prefix then
+        return "|cFF" .. r .. g .. b
+    else
+        return r .. g .. b
+    end
 end
 
 -- Returns the hex version of the specified decimal number
@@ -444,8 +525,52 @@ Sol.color.DecimalToHex = function(decimal)
     end
 end
 
+--[[
+Get the hex color value of the specified (most likely tooltip) text 
+
+Parameters:
++ text   - the text
++ colors - table of RGB color values { 1=R, 2=G, 3=B } (optional)
+
+Returns:
++ the hexacdecimal value of the text color (e.g., FF0000 for red)
+--]]
+Sol.color.GetTextColor = function(text, colors)
+    return 
+        (colors and Sol.color.ColorValuesToHexColor(unpack(colors))) or 
+        (text:sub(1, 2) == "|c" and text:sub(5, 10):upper())
+end
+
+-- Converts specified RGB hex representation
+-- to the equivalent percent (out of 1.0) color values
+Sol.color.HexColorToColorValues = function(hex)
+    if #hex >= 10 and hex:upper():find("^|CFF%x%x%x%x%x%x.*") then
+        hex = hex:sub(5, 10)
+    end
+    if #hex ~= 6 then
+        return nil
+    end
+
+    r = Sol.color.HexToPercent(hex:sub(1, 2))
+    g = Sol.color.HexToPercent(hex:sub(3, 4))
+    b = Sol.color.HexToPercent(hex:sub(5, 6))
+    return r, g, b
+end
+
+-- Converts specified two-digit hex value (out of 255) to a
+-- decimal value (out of 1.0). A value of FF or more counts as 1.0 .
+Sol.color.HexToPercent = function(hex)
+    if not hex then
+        return nil
+    end
+    if #hex > 2 then
+        return 1
+    end
+    return Sol.math.HexToDec(hex) / 255
+end
+
 -- Converts specified decimal value (out of 1.0) to a two-digit
--- hex value (out of 256). A value of 1.0 or more counts as FF.
+-- hex value (out of 255). A value of 1.0 or more counts as FF.
 Sol.color.PercentToHex = function(percent)
     if not percent or type(percent) ~= "number" then
         return nil
@@ -453,11 +578,12 @@ Sol.color.PercentToHex = function(percent)
     if percent >= 1 then
         return "FF"
     end
-    percent = percent * 256
+    percent = percent * 255
     local c1 = math.floor(percent / 16)
     local c2 = math.floor(percent % 16)
     return Sol.color.DecimalToHex(c1) .. Sol.color.DecimalToHex(c2)
 end
+
 
 -------------------------------------------------------------------------------
 -- Sol.config -----------------------------------------------------------------
@@ -484,14 +610,14 @@ Post:
 previous page and shows the new one.
 --]]
 Sol.config.ChangeTab = function(addonName, tab)
-    Sol._help.CheckAddon(addonName)
+    local addon = Sol._help.CheckAddon(addonName)
 
-    if Sol[addonName].SelectedTab then
-        local selectedPage = Sol._help.GetPageFromTab(Sol[addonName].SelectedTab)
+    if addon.SelectedTab then
+        local selectedPage = Sol._help.GetPageFromTab(addon.SelectedTab)
         if selectedPage then
             selectedPage:Hide()
         end
-        Sol[addonName].SelectedTab:Enable()
+        addon.SelectedTab:Enable()
     end
     
     local page = Sol._help.GetPageFromTab(tab)
@@ -500,7 +626,7 @@ Sol.config.ChangeTab = function(addonName, tab)
     end
     tab:Disable()
 
-    Sol[addonName].SelectedTab = tab
+    addon.SelectedTab = tab
 end
 
 --[[
@@ -515,6 +641,7 @@ Parameters:
                     you can specify which var you want to use, instead.
 + removeOld       - True to remove settings that are not in defaultSettings
                     Defaults to false
++ perCharacter    - Whether to save the settings variable per character
 
 Pre: 
 + Your addon's settings table must be called <addonName>_Settings
@@ -523,8 +650,8 @@ Post:
 + Your addon's settings table will be setup to be saved to
 SaveVariables.lua when the game saves all variables
 --]]
-Sol.config.CheckSettings = function(addonName, defaultSettings, settingsName, removeOld)
-    Sol._help.CheckAddon(addonName)
+Sol.config.CheckSettings = function(addonName, defaultSettings, settingsName, removeOld, perCharacter)
+    local addon = Sol._help.CheckAddon(addonName)
 
     if not defaultSettings then
         defaultSettings = {}
@@ -533,7 +660,11 @@ Sol.config.CheckSettings = function(addonName, defaultSettings, settingsName, re
     if not settingsName then
         settingsName = Sol._help.GetAddonSettingsName(addonName)
     end
-    SaveVariables(settingsName)
+    if perCharacter then
+        SaveVariablesPerCharacter(settingsName)
+    else
+        SaveVariables(settingsName)
+    end
 
     local addonSettings = _G[settingsName]
     if not addonSettings then
@@ -593,20 +724,27 @@ Parameters:
 + frame     - Your config frame
 + command   - The shorthand command you want to use. A command for
               /<addonName> is automatically created, so this can be nil.
++ animateTime      - Amount of time to animate; leave nil to avoid animation
++ animateType      - The type of animation to run
++ onAnimationEndFn - A function to call after the animation is finished, if there is one
 
 Post:
 + Entering /<addonName> and/or /<command> will open your config
 frame if it's closed and close it if it's open.
 --]]
-Sol.config.CreateSlashToHandleConfig = function(addonName, frame, command)
-    Sol._help.CheckAddon(addonName)
+Sol.config.CreateSlashToHandleConfig = function(addonName, frame, command, animateTime, animateType, onAnimationEndFn)
+    local addon = Sol._help.CheckAddon(addonName)
     if not Sol.util.IsValidFrame(frame) then
         return
     end
 
-    Sol[addonName].frame = frame
+    addon.frame = frame
     local fn = function(editBox, msg)
-        ToggleUIFrame(Sol[addonName].frame)
+        if animateTime and animateTime ~= 0 then
+            Sol.util.ToggleVisibility(addon.frame, addonName, animateTime, animateType, onAnimationEndFn)
+        else
+            ToggleUIFrame(addon.frame)
+        end
     end
 
     addonName:gsub("/", "")
@@ -616,6 +754,59 @@ Sol.config.CreateSlashToHandleConfig = function(addonName, frame, command)
     if command then
         Sol.config.CreateSlashCommand(command, fn, slashName, 2)
     end
+end
+
+--[[
+getopt, POSIX style command line argument parser
+param arg contains the command line arguments in a standard table.
+param options is a string with the letters that expect string values.
+returns a table where associated keys are true, nil, or a string value.
+The following example styles are supported
+  -a one  ==> opts["a"]=="one"
+  -bone   ==> opts["b"]=="one"
+  -c      ==> opts["c"]==true
+  --c=one ==> opts["c"]=="one"
+  -cdaone ==> opts["c"]==true opts["d"]==true opts["a"]=="one"
+note POSIX demands the parser ends at the first non option
+     this behavior isn't implemented.
+
+Example:
+opts = Sol.config.GetParameters( arg, "ab" )
+for k, v in pairs(opts) do
+  print( k, v )
+end
+
+Contributed by Xylch (aka h3x3dg0d)
+--]]
+Sol.config.GetParameters = function(arg, options)
+  local tab = {}
+  for k, v in ipairs(arg) do
+    if string.sub( v, 1, 2) == "--" then
+      local x = string.find( v, "=", 1, true )
+      if x then tab[ string.sub( v, 3, x-1 ) ] = string.sub( v, x+1 )
+      else      tab[ string.sub( v, 3 ) ] = true
+      end
+    elseif string.sub( v, 1, 1 ) == "-" then
+      local y = 2
+      local l = string.len(v)
+      local jopt
+      while ( y <= l ) do
+        jopt = string.sub( v, y, y )
+        if string.find( options, jopt, 1, true ) then
+          if y < l then
+            tab[ jopt ] = string.sub( v, y+1 )
+            y = l
+          else
+            tab[ jopt ] = arg[ k + 1 ]
+          end
+        else
+          tab[ jopt ] = true
+        end
+        y = y + 1
+      end
+    end
+  end
+  return tab
 end
 
 --[[
@@ -630,15 +821,52 @@ Parameters:
 IMPORTANT: SEE Sol.config.SaveConfig for PRE conditions!
 --]]
 Sol.config.LoadConfig = function(addonName, selectedTab)
-    Sol._help.CheckAddon(addonName)
+    local addon = Sol._help.CheckAddon(addonName)
     local addonSettings = Sol._help.GetAddonSettings(addonName)
 
     if selectedTab then
         Sol.config.ChangeTab(addonName, selectedTab)
     end
 
-    Sol._help.ConfigLoad(addonSettings, nil, addonName, selectedTab)
+    Sol._help.ConfigLoad(addonName, addonSettings)
+end
 
+
+--[[
+Restores the frame's previously saved (using Sol.config.SaveFrameBounds) 
+size and position. Typically called on variables loaded
+
+Parameters:
++ addonName  - Your addon's name
++ frame      - The frame whose bounds to restore
++ ignoreSize - True to not restore frame size, only position
+
+Post:
++ The frame's size and positions will be set to whatever it was when
+Sol.config.SaveFrameBounds was last called on it
+--]]
+Sol.config.RestoreFrameBounds = function(addonName, frame, ignoreSize)
+    local addon = Sol._help.CheckAddon(addonName)
+    if not addonName or not Sol.util.IsValidFrame(frame) then
+        return
+    end
+    
+    local varName = addonName .. "_" .. frame:GetName() .. "_Position"
+    
+    if _G[varName] then
+        -- Ensure the variable persists through restarts, even if save isn't
+        -- called again
+        SaveVariables(varName)
+        
+        local scale = GetUIScale()
+        frame:ClearAllAnchors()
+        frame:SetAnchor("TOPLEFT", "TOPLEFT", "UIParent", 
+            _G[varName][1] / scale, 
+            _G[varName][2] / scale)
+        if not ignoreSize then
+            frame:SetSize(_G[varName].width, _G[varName].height)
+        end
+    end
 end
 
 --[[
@@ -667,15 +895,45 @@ set, based on your config screen. However, some may not be, so
 again, check the settings before you distribtue.
 --]]
 Sol.config.SaveConfig = function(addonName, hideInfoMsg)
-    Sol._help.CheckAddon(addonName)
+    local addon = Sol._help.CheckAddon(addonName)
     local addonSettings = Sol._help.GetAddonSettings(addonName)
 
-    Sol._help.ConfigSave(addonSettings, nil, addonName)
+    Sol._help.ConfigSave(addonName, addonSettings)
 
     SaveVariables(Sol._help.GetAddonSettingsName(addonName))
 
     if not hideInfoMsg then
         Sol.io.Print(addonName .. " settings saved.")
+    end
+end
+
+--[[
+Saves the frame's size and position, to be restored later (e.g., upon next 
+login) using Sol.config.RestoreFrameBounds. Typically called when the user
+stops moving the frame (OnMouseUp)
+
+Parameters:
++ addonName    - Your addon's name
++ frame        - The frame whose bounds to save
++ perCharacter - Whether to save the settings variable per character
+
+Post:
++ The frame's size and positions will be saved in SavedVariables
+--]]
+Sol.config.SaveFrameBounds = function(addonName, frame, perCharacter)
+    local addon = Sol._help.CheckAddon(addonName)
+    if not addonName or not Sol.util.IsValidFrame(frame) then
+        return
+    end
+    frame:StopMovingOrSizing()
+    
+    local varName = addonName .. "_" .. frame:GetName() .. "_Position"
+    _G[varName] = { frame:GetPos() }
+    _G[varName].width, _G[varName].height = frame:GetSize()
+    if perCharacter then
+        SaveVariablesPerCharacter(varName)
+    else
+        SaveVariables(varName)
     end
 end
 
@@ -1048,6 +1306,34 @@ end
 -- Sol.data.items -------------------------------------------------------------
 -------------------------------------------------------------------------------
 --[[
+Finds the first empty bag slot in the specified bag. If no bag is specified,
+searches first two bags (can't test others)
+
+Parameters:
++ bagIndex - 0 for Bag I, 1 for Bag II, etc
+
+Returns:
++ the inventory index of the first empty slot (used by GetBagItemLink)
++ the bag index of the first empty slot (used by GetBagItemInfo)
+--]]
+Sol.data.items.FindEmptyBagSlot = function(bagIndex)
+    local maxItems = 30
+    local offset = 0
+    if not bagIndex then
+        _, maxItems = GetBagCount()
+    else
+        offset = bagIndex * maxItems
+    end
+    
+    for i = 1, maxItems do
+        local index, file = GetBagItemInfo(offset + i)
+        if not file or file == "" then
+            return index, i
+        end
+    end
+end
+
+--[[
 Get the stats/attributes of an item (e.g., +22.0 Stamina)
 
 Parameters:
@@ -1269,7 +1555,6 @@ Sol.data.items.GetTotalBankItemCount = function(itemName)
 end
 
 
-
 -------------------------------------------------------------------------------
 -- Sol.data.mobs --------------------------------------------------------------
 -------------------------------------------------------------------------------
@@ -1435,7 +1720,7 @@ Returns:
 + The mana/energy/rage/focus cost of the skill, as shown in the skillbook
 --]]
 Sol.data.skills.GetSkillCost = function(skillPage, skillIndex, tooltip)
-    local regex = "^Requires (%d+) (%w+)$"
+    local regex = "^Uses (%d+) (%w+)$"
     return Sol._help.GetSkillMatches(skillPage, skillIndex, tooltip, regex)
 end
 
@@ -1453,12 +1738,12 @@ Returns:
 Sol.data.skills.GetSkillTypes = function(unit)
     local class, subClass = UnitClass(unit)
     local data = {
-        Scout = "concentration",
+        Scout = "focus",
         Rogue = "energy",
         Warrior = "rage",
-        Mage = "mana",
-        Priest = "mana",
-        Knight = "mana",
+        Mage = "MP",
+        Priest = "MP",
+        Knight = "MP",
     }
     return data[class], data[subClass]
 end
@@ -1601,23 +1886,32 @@ end
 Parameters:
 + addonName - Your addon's name
 + fnName    - The name of the function to unhook
-+ frame     - The frame or table the function is for, or nil
++ tbl       - The frame or table the function is for, or nil
++ tableName - For tables that aren't frames, a name must be specified
 
 Returns:
 + The original function assigned to this frame and fnName, before it
 was hooked, or nil if the function hasn't been hooked.
 
 --]]
-Sol.hooks.GetOriginalFn = function(addonName, fnName, frame)
-    Sol._help.CheckAddon(addonName)
+Sol.hooks.GetOriginalFn = function(addonName, fnName, tbl, tableName)
+    local addon = Sol._help.CheckAddon(addonName)
 
-    local tableName = (frame and frame ~= _G and frame:GetName()) or "_G"
-    if  not SolHooks[addonName] or
-        not SolHooks[addonName][tableName] then
+    if tbl and not tableName and tbl.GetName then
+        tableName = tbl:GetName()
+    elseif not tableName then
+        tbl = _G
+        tableName = "_G"
+    end
+    
+    local hooks = Sol._help.GetHooks(tableName, fnName)
+    
+    if not hooks then return nil end
 
-        return nil
-    else
-        return SolHooks[addonName][tableName][fnName]
+    for i, hook in ipairs(hooks) do
+        if hook.addon.name == addonName then
+            return hook.originalFn
+        end
     end
 end
 
@@ -1627,41 +1921,46 @@ function, it will call your function, instead. So, for example, if you
 want to  change how things display in a chat frame, you can hook that
 frame's AddMessage function and have your own function be called.
 After you do whatever processing you want, you can (and in most cases,
-should) call the original function using Sol.hooks.GetOriginalFn()
+should) call the original function using Sol.hooks.GetOriginalFn
 
 Parameters:
 + addonName - Your addon's name
 + fnName    - The name of the function to hook
 + newFn     - Function to call instead of the original one
-+ frame     - The frame or table the function is for, or nil
++ tbl       - The table or frame the function is for, or nil
++ tableName - For tables that aren't frames, a name must be specified
 
-WARNING: First of all, hooking is inherently dangerous; if you mess
-things up you'll most likely have to restart the game. Aside from
-that, there are some situations where the hooks come apart on a
-ReloadUI(). They shouldn't. But they do. C'est la vie. Test thoroughly.
+WARNING: Hooking is inherently dangerous; if you mess
+things up you may have to restart the game. 
 --]]
-Sol.hooks.Hook = function(addonName, fnName, newFn, frame)
-    Sol._help.CheckAddon(addonName)
+Sol.hooks.Hook = function(addonName, fnName, newFn, tbl, tableName)
+    local addon = Sol._help.CheckAddon(addonName)
 
-    local tableName = "_G"
-    local tbl = _G
-    if frame and frame ~= _G and frame.GetName then
-        tableName = frame:GetName()
-        tbl = frame
+    if tbl and not tableName and tbl.GetName then
+        tableName = tbl:GetName()
+    elseif not tableName then
+        tbl = _G
+        tableName = "_G"
     end
-
-    if newFn == tbl[fnName] then
+    
+    
+    if not tbl or newFn == tbl[fnName] or not tbl[fnName] or not newFn then
         return false
     end
 
+    -- Check hooks table and create as neccessary
+    if not SolHooks[tableName] then 
+        SolHooks[tableName] = {} 
+    end
+    local hooks = SolHooks[tableName][fnName]
+    if not hooks then
+        hooks = {}
+        SolHooks[tableName][fnName] = hooks
+    end
+    
     -- Save the original fn
-    if not SolHooks[addonName] then
-        SolHooks[addonName] = {}
-    end
-    if not SolHooks[addonName][tableName] then
-        SolHooks[addonName][tableName] = {}
-    end
-    SolHooks[addonName][tableName][fnName] = tbl[fnName]
+    local hook = { addon = addon, originalFn = tbl[fnName], newFn = newFn, tbl = tbl }
+    table.insert(hooks, hook)
 
     -- Set the new one
     tbl[fnName] = newFn
@@ -1676,28 +1975,37 @@ If the function hasn't been hooked using Sol, does nothing.
 Parameters:
 + addonName - Your addon's name
 + fnName    - The name of the function to unhook
-+ frame     - The frame the function is for, or nil
++ tbl       - The table or frame the function is for, or nil
++ tableName - For tables that aren't frames, a name must be specified
 
 --]]
-Sol.hooks.UnHook = function(addonName, fnName, frame)
-    Sol._help.CheckAddon(addonName)
-    local tableName = "_G"
-    local tbl = _G
-    if frame and frame ~= _G and frame.GetName then
-        tbl = frame
-        tableName = frame:GetName()
+Sol.hooks.UnHook = function(addonName, fnName, tbl, tableName)
+    local addon = Sol._help.CheckAddon(addonName)
+
+    if tbl and not tableName and tbl.GetName then
+        tableName = tbl:GetName()
+    elseif not tableName then
+        tableName = "_G"
+        tbl = _G
     end
     
-    local originalFn = Sol.hooks.GetOriginalFn(addonName, fnName, frame)
-    
-    if originalFn and fnName then
-        tbl[fnName] = originalFn
-    end
-    
-    if addonName and tableName and fnName 
-        and SolHooks[addonName] and SolHooks[addonName][tableName] then
-        
-        SolHooks[addonName][tableName][fnName] = nil
+    local hooks = Sol._help.GetHooks(tableName, fnName)
+    if hooks then
+        for i, hook in ipairs(hooks) do
+            if hook.addon.name == addonName then
+                if #hooks > i then
+                    -- Another hook is pointing at this one, make it
+                    -- point to the previous one or the original fn
+                    hooks[i + 1].originalFn = hook.originalFn
+                else
+                    -- This is the last hook in the chain, just unhook
+                    tbl[fnName] = hook.originalFn
+                end
+                
+                table.remove(hooks, i)
+                break
+            end
+        end
     end
 end
 
@@ -1708,17 +2016,17 @@ Parameters:
 + addonName - Your addon's name
 --]]
 Sol.hooks.UnHookAll = function(addonName)
-    if not addonName or not SolHooks[addonName] then
+    if not addonName then
         return
     end
 
-    for tableName in pairs(SolHooks[addonName]) do
-        local tbl = _G
-        if tableName ~= "_G" then
-            tbl = _G[tableName]
-        end
-        for fnName in pairs(SolHooks[addonName][tableName]) do
-            Sol.hooks.UnHook(addonName, fnName, tbl)
+    for tableName, fnNames in pairs(SolHooks) do
+        for fnName, hooks in pairs(fnNames) do
+            for i, hook in ipairs(hooks) do
+                if hook.addon.name == addonName then
+                    Sol.hooks.UnHook(addonName, fnName, hook.tbl)
+                end
+            end
         end
     end
 end
@@ -1899,6 +2207,46 @@ end
 -- Sol.math -------------------------------------------------------------------
 -------------------------------------------------------------------------------
 
+-- source: http://snipplr.com/view/13086/number-to-hex/
+-- converts decimal number to hex format
+Sol.math.DecToHex = function(dec)
+    if not dec or type(dec) ~= "number" then
+        return nil
+    end
+
+    local hexValues = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}
+    local hex = ""
+    while dec > 0 do
+        local mod = math.fmod(dec, 16)+1
+        hex = hexValues[mod] .. hex
+        dec = math.floor(dec / 16)
+    end
+    if hex == "" then hex = "0" end
+    return hex
+end
+
+-- converts hex number to decimal format
+Sol.math.HexToDec = function(hex)
+    if not hex then
+        return nil
+    end
+
+    local hexValues = {A=10, B=11, C=12, D=13, E=14, F=15}
+    local dec = 0
+    local num = 0
+    hex = hex:upper()
+    for i=1,#hex do
+        subhex = hex:sub(-i, -i)
+        if hexValues[subhex] then
+            num = hexValues[subhex]
+        elseif subhex >= "0" and subhex <= "9" then
+            num = tonumber(subhex)
+        end
+        dec = dec + num * math.pow(16, i-1)
+    end
+    return dec
+end
+
 -- From lua-users.org wiki
 -- Rounds a number to the given number of decimal places.
 Sol.math.Round = function(num, idp)
@@ -1909,6 +2257,7 @@ Sol.math.Round = function(num, idp)
   return math.floor(num + 0.5)
 end
 
+
 -------------------------------------------------------------------------------
 -- Sol.string -----------------------------------------------------------------
 -------------------------------------------------------------------------------
@@ -1916,14 +2265,49 @@ end
 -- From lua-users.org wiki
 -- Returns true if "str" ends with "end"
 Sol.string.EndsWith = function(str, ends)
-   return ends == '' or string.sub(str, -string.len(ends)) == ends
+    if not ends then return false end
+    return ends == '' or string.sub(str, -string.len(ends)) == ends
 end
 
 -- From lua-users.org wiki
 -- Returns true if "str" starts with "start"
 Sol.string.StartsWith = function(str, start)
-   return string.sub(str, 1, string.len(start)) == start
+    if not start then return false end
+    return string.sub(str, 1, string.len(start)) == start
 end
+
+-- Get the last index of the specified substring within string
+Sol.string.LastIndexOf = function(str, subString)
+    local lastIndex = nil
+    local index = true
+    while index do
+        lastIndex = index
+        index = str:find(subString)
+        str = str:sub(index + 1)
+    end
+    return lastIndex
+end
+
+
+
+--[[
+Parses the given string into a date, if possible
+
+Parameters:
++ str   - a string containing a date in the format d/m/y h:m:s or some variation of it
+
+Returns:
++ the (month, day, year) and the (hour, minute, second) in the order that they were in the string
+
+Examples:
+local month, day, year, hour, minute, second = Sol.string.ParseDate("12/31/2009 23:59:59")
+--]]
+Sol.string.ParseDate = function(dt)
+    local h, m, s = dt:match("(%d%d?):(%d%d?):(%d%d?)")
+    local mo, da, ye = dt:match("(%d%d?)/(%d%d?)/(%d%d?%d?%d?)")
+    return mo, da, ye, h, m, s
+end
+
 
 -- From lua-users.org wiki
 -- Splits str into parts, using delim as a delimeter, and returns
@@ -2203,7 +2587,7 @@ Sol.timers.ScheduleTimer = function(addonName, delay, fn, repeatDelay, timerName
         fn(addonName, newTimer.id)
         newTimer.started = true
         newTimer.repeatStart = newTimer.start
-    end    
+    end
     
     -- Hook the OnUpdate
     local updateFn = function(frame, elapsedTime)
@@ -2261,7 +2645,26 @@ Sol.io.PrintTable(data)
 Sol.tooltip.ParseItemData = function(tooltip)
     local colorRegex = "|cff%x%x%x%x%x%x"
     local lines = Sol.tooltip.ReadTooltip(tooltip)
-    
+    Sol.tooltip.ParseItemDataFromLines(lines)
+end
+
+--[[
+Parses data that's been read from an item and attempts to glean as much
+information from it as possible.
+
+Parameters:
++ lines - data read from a tooltip, e.g., with Sol.tooltip.ReadTooltip(tooltip)
+
+Returns:
++ a table of useful data about the item, including type, level, attributes, etc
+
+Example:
+Sol.tooltip.ClearAllText(GameTooltip)
+GameTooltip:SetBagItem(GetBagItemInfo(1))
+local data = Sol.tooltip.ParseItemData
+Sol.io.PrintTable(data)
+--]]
+Sol.tooltip.ParseItemDataFromLines = function(lines)
     local data = {}
     local index = 1
     local numLines = #(lines.left)
@@ -2282,7 +2685,7 @@ Sol.tooltip.ParseItemData = function(tooltip)
             Sol._help.qualityColors[hexColor] = _G["ITEM_QUALITY" .. i .. "_DESC"]
         end
     end
-    
+        
     -- Item Name is the first thing in the tooltip
     data.name = lines.left[index].text
     local color = (data.name:sub(1,2) == "|c") and data.name:sub(5, 10)
@@ -2326,6 +2729,14 @@ Sol.tooltip.ParseItemData = function(tooltip)
         end
     end
     
+    data.stackCount = lines.left[index].text:match("Stacked Number:(%d+)")
+    if data.stackCount then
+        index = index + 1
+        if index > numLines then
+            return data
+        end
+    end
+    
     data.liveTime = lines.left[index].text:match("Live time (%d+ .*)")
     if data.liveTime then
         index = index + 1
@@ -2342,8 +2753,8 @@ Sol.tooltip.ParseItemData = function(tooltip)
         end
     end
     
-    -- Blue text is 'flavor' text
-    if lines.left[index].text:sub(2,10) == "cff00BFF2" then
+    local color = Sol.color.GetTextColor(lines.left[index].text, lines.left[index].color)
+    if color == Sol.constants.FLAVOR_TEXT_COLOR then
         data.flavorText = lines.left[index].text
         if data.flavorText:match("(Daily Quest)") then
             data.type = "Quest Item"
@@ -2381,24 +2792,36 @@ Sol.tooltip.ParseItemData = function(tooltip)
             return data
         end
     end
-        
+
+    data.worth = lines.left[index].text:match("Worth: (%d+) Gold")
+    if data.worth then
+        index = index + 1
+        if index > numLines then
+            return data
+        end
+    end
+    
     -- For most things, the type is next
-    if not data.type then        
-        data.type = lines.left[index].text    
-    end    
-    if lines.left[index].color ~= nil or lines.left[index].text:sub(5, 10):upper() == "FF0000" then
-        data.unequipable = true
-    end
-    if lines.right[index] then
-        data.position = lines.right[index].text
-    end
-    index = index + 1
-    if index > numLines then
-        return data
+    color = Sol.color.GetTextColor(lines.left[index].text, lines.left[index].color)
+    if not data.type and 
+        (not color or 
+            color == Sol.constants.NORMAL_TEXT_COLOR or 
+            color == Sol.constants.ERROR_TEXT_COLOR) then
+        
+        data.type = lines.left[index].text
+        if color == Sol.constants.ERROR_TEXT_COLOR then
+            data.unequipable = true
+        end
+        if lines.right[index] then
+            data.position = lines.right[index].text
+        end
+        index = index + 1
+        if index > numLines then
+            return data
+        end
     end
     
-    -- Physical defense shows up on armor only
-    
+    -- Physical defense shows up on armor only    
     data.pdef = tonumber(lines.left[index].text:gsub(colorRegex, ""):match("Physical Defense (%d+.%d+)"))
     if data.pdef then
         if lines.right[index] then
@@ -2429,17 +2852,21 @@ Sol.tooltip.ParseItemData = function(tooltip)
         end
     end
     
-    data.worth = tonumber(lines.left[index].text:gsub(colorRegex, ""):match("Worth: (%d+)"))
-    if data.worth then
-        index = index + 1
-        if index > numLines then
-            return data
+    -- may have already gotten worth by now
+    if not data.worth then
+        data.worth = tonumber(lines.left[index].text:gsub(colorRegex, ""):match("Worth: (%d+)"))
+        if data.worth then
+            index = index + 1
+            if index > numLines then
+                return data
+            end
         end
     end
     
     -- Blue text is 'flavor' text; sometimes it appears on equipment, after the worth
     -- note that there's another part that checks for flavor text above
-    if lines.left[index].text:sub(2,10) == "cff00BFF2" then
+    color = Sol.color.GetTextColor(lines.left[index].text, lines.left[index].color)
+    if not data.flavorText and color == Sol.constants.FLAVOR_TEXT_COLOR then
         data.flavorText = lines.left[index].text
         if data.flavorText:match("(Daily Quest)") then
             data.type = "Quest Item"
@@ -2453,22 +2880,16 @@ Sol.tooltip.ParseItemData = function(tooltip)
     
     for i = index, #lines.left do
         local line = lines.left[i]
-        local hexColor = 
-                (line.color and Sol.color.ColorValuesToHexColor(line.color)) or 
-                (line.text:sub(1, 2) == "|c" and line.text:sub(5, 10))
-                
-        if hexColor then
-            if (hexColor == "00FF00" or hexColor == "FFFF00") then
-                table.insert(data.attributes, line.text)
-                
-            elseif hexColor == "BC2DFF" then
-                local runesUsed, runesTotal = line.text:match("Rune %((%d)/(%d)%)")
-                if runesUsed then
-                    data.runesUsed = tonumber(runesUsed)
-                    data.runesTotal = tonumber(runesTotal)
-                end
-            end
+        local color = Sol.color.GetTextColor(line.text, line.color)
+        if color == Sol.constants.GREEN_STAT_TEXT_COLOR or color == YELLOW_STAT_TEXT_COLOR then
+            table.insert(data.attributes, line.text)
             
+        elseif color == Sol.constants.RUNE_TEXT_COLOR then
+            local runesUsed, runesTotal = line.text:match("Rune %((%d)/(%d)%)")
+            if runesUsed then
+                data.runesUsed = tonumber(runesUsed)
+                data.runesTotal = tonumber(runesTotal)
+            end
         end
     end
     return data
@@ -2683,7 +3104,7 @@ Note: To print this out, use Sol.io.PrintTable. To change the number of
 results returned, change Sol.util.MaxSearchResults
 --]]
 Sol.util.MaxSearchResults = 50
-Sol.util.Find = function(searchStr, start, ignoreCase, searchPosition)
+Sol.util.Find = function(searchStr, start, ignoreCase, searchPosition, plain)
     local searchStrParts = Sol.table.RemoveEmpty(Sol.string.Split(searchStr))
     local searchType = nil
     local tbl = _G
@@ -2697,7 +3118,7 @@ Sol.util.Find = function(searchStr, start, ignoreCase, searchPosition)
             end
         end
     end
-    return Sol.util.FindInTable(tbl, searchStr, searchType, start, ignoreCase, searchPosition)
+    return Sol.util.FindInTable(tbl, searchStr, searchType, start, ignoreCase, searchPosition, plain)
 end
 
 -- Looks for and returns the first ChatFrame that has frameName as part of its
@@ -2757,28 +3178,18 @@ parameters specified.
 Note: To print this out, use Sol.io.PrintTable. To change the number of
 results returned, change Sol.util.MaxSearchResults
 --]]
-Sol.util.FindInTable = function(tbl, searchStr, searchType, start, ignoreCase, searchPosition)
+Sol.util.FindInTable = function(tbl, searchStr, searchType, start, ignoreCase, searchPosition, plain)
     local results = {}
 
     if not searchStr then
         return results
     end
 
-    if not tbl then
-        tbl = _G
-    end
-
-    if not searchType then
-        searchType = Sol.constants.SEARCH_TYPE_ANY
-    end
-
-    if not start then
-        start = 0
-    end
-
-    if not searchPosition then
-        searchPosition = Sol.constants.SEARCH_POS_ANY
-    end
+    tbl = tbl                       or _G
+    searchType = searchType         or Sol.constants.SEARCH_TYPE_ANY
+    start = start                   or 0
+    plain = plain                   or true
+    searchPosition = searchPosition or Sol.constants.SEARCH_POS_ANY
 
     if not Sol.util.MaxSearchResults or type(Sol.util.MaxSearchResults) ~= "number" then
         Sol.util.MaxSearchResults = 50
@@ -2796,9 +3207,9 @@ Sol.util.FindInTable = function(tbl, searchStr, searchType, start, ignoreCase, s
             kStr = kStr:lower()
         end
 
-        if  (searchPosition == Sol.constants.SEARCH_POS_ANY and string.find(kStr, searchStr, 1, true)) or
-            (searchPosition == Sol.constants.SEARCH_POS_END and Sol.string.EndsWith(kStr, searchStr, 1, true)) or
-            (searchPosition == Sol.constants.SEARCH_POS_START and Sol.string.StartsWith(kStr, searchStr, 1, true))
+        if  (searchPosition == Sol.constants.SEARCH_POS_ANY and string.find(kStr, searchStr, 1, plain)) or
+            (searchPosition == Sol.constants.SEARCH_POS_END and Sol.string.EndsWith(kStr, searchStr, 1, plain)) or
+            (searchPosition == Sol.constants.SEARCH_POS_START and Sol.string.StartsWith(kStr, searchStr, 1, plain))
         then
             if (searchType == Sol.constants.SEARCH_TYPE_ANY or type(v) == searchType) then
                 index = index + 1
@@ -2834,6 +3245,7 @@ Sol.util.FnName = function(fn, tbl)
     end
     return tostring(fn)
 end
+
 
 --[[
 Check if the specified meta key is pressed
@@ -2896,8 +3308,8 @@ end
 
 --[[
 Loads the specified lua file. Attempts to determine the correct path.
-For example, Sol.util.LoadFile("MyAddon.lua") will load MyAddon/MyAddon.lua,
-and Sol.util.LoadFile("MyAddonConfig") will load MyAddon/MyAddonConfig.lua.
+For example, Sol.util.LoadFile2("MyAddon.lua") will load MyAddon/MyAddon.lua,
+and Sol.util.LoadFile2("MyAddonConfig") will load MyAddon/MyAddonConfig.lua.
 For anything else, use Sol.util.LoadFile. Runs UnHookAll for MyAddon, as well.
 
 Parameters:
@@ -2997,6 +3409,54 @@ Sol.util.TernaryOp = function(condition, trueValue, falseValue)
     end
 end
 
+--[[
+Hides the frame if it's visible; shows it if it's not. Tries to animate if addonName is specified
+
+Parameters:
++ frame     - The frame to show or hide
++ addonName - The name of the addon. This is used for animation; must have <addonName>_OnUpdate function
+              called from an OnUpdate event of a visible frame
++ time      - The amount of time to animate (defaults to Sol.constants.DEFAULT_ANIMATION_TIME)
++ animationType    - The type of animation to do (defaults to Sol.constants.FADE)
++ onAnimationEndFn - A function to call when the animation finishes
+
+--]]
+Sol.util.ToggleVisibility = function(frame, addonName, time, animationType, onAnimationEndFn)
+    if not time then time = Sol.constants.DEFAULT_ANIMATION_TIME end
+    if not animationType then animationType = Sol.constants.FADE end
+    
+    if frame:IsVisible() then
+        -- Hide the frame
+        if addonName and Sol.animation[animationType] then
+            -- Animate
+            Sol.animation[animationType](addonName, frame, 0, nil, time, nil, function() 
+                frame:Hide() 
+                if onAnimationEndFn then
+                    onAnimationEndFn(addonName, frame)
+                end
+            end)
+        else
+            -- No animation
+            frame:Hide()
+        end
+    else
+        -- Show the frame
+        frame:Show()
+        if addonName and Sol.animation[animationType] then
+            -- Animate
+            if animationType == Sol.constants.FADE then
+                frame:SetAlpha(0)
+            elseif animationType == Sol.constants.SCALE then
+                frame:SetScale(0)
+            end
+            local fn = nil
+            if onAnimationEndFn then
+                fn = function() onAnimationEndFn(addonName, frame) end
+            end
+            Sol.animation[animationType](addonName, frame, 1, nil, time, nil, fn)
+        end
+    end
+end
 
 
 
@@ -3005,9 +3465,19 @@ end
 
 -- Creates a place to store data about this addon, if necessary
 Sol._help.CheckAddon = function(addonName)
-    if not Sol[addonName] then
-        Sol[addonName] = {}
-        table.insert(Sol._help.Addons, addonName)
+    local addon = Sol._help.GetAddon(addonName)
+    if not addon then
+        addon = {name=addonName}
+        table.insert(Sol._help.Addons, addon)
+    end
+    return addon
+end
+
+Sol._help.GetAddon = function(addonName)
+    for i, addon in pairs(Sol._help.Addons) do
+        if addon.name == addonName then
+            return addon
+        end
     end
 end
 
@@ -3145,7 +3615,7 @@ Sol._help.RemoveSettings = function(addonSettings, defaultSettings)
 end
 
 -- function attempts to setup your config screen
-Sol._help.ConfigLoad = function(settingsTable, parrentTable, addonName)
+Sol._help.ConfigLoad = function(addonName, settingsTable, parrentTable)
 
     if not parrentTable then
         parrentTable = ""
@@ -3176,14 +3646,14 @@ Sol._help.ConfigLoad = function(settingsTable, parrentTable, addonName)
                 slider:SetValue(settingsTable[opt])
             end
         elseif type(val) == "table" then
-            Sol._help.ConfigLoad(settingsTable[opt], tostring(opt), addonName, selectedTab)
+            Sol._help.ConfigLoad(addonName, settingsTable[opt], tostring(opt))
         end
     end
 
 end
 
 -- function attempts to save the displayed values on config screen
-Sol._help.ConfigSave = function(settingsTable, parrentTable, addonName)
+Sol._help.ConfigSave = function(addonName, settingsTable, parrentTable)
 
     if not parrentTable then
         parrentTable = ""
@@ -3211,7 +3681,7 @@ Sol._help.ConfigSave = function(settingsTable, parrentTable, addonName)
                 settingsTable[opt] = slider:GetValue()
             end
         elseif type(val) == "table" then
-            Sol._help.ConfigSave(settingsTable[opt], tostring(opt), addonName)
+            Sol._help.ConfigSave(addonName, settingsTable[opt], tostring(opt))
         end
     end
 
@@ -3219,46 +3689,43 @@ end
 
 -- !!! DO NOT CALL !!! --
 Sol._help.Reset = function()
-    for addonName in pairs(SolHooks) do
-        Sol.hooks.UnHookAll(addonName)
-    end
-    
-    for _, addonName in pairs(Sol._help.Addons) do
-        if Sol[addonName] then
-            Sol[addonName] = nil
+    -- Unhook in reverse order
+    for tableName, fnNames in pairs(SolHooks) do
+        for fnName, hooks in pairs(fnNames) do
+            for i = #hooks, 1, -1 do
+                local hook = hooks[i]
+                Sol.hooks.UnHook(hook.addon.name, fnName, hook.tbl)
+            end
         end
     end
+    
     Sol._help.Addons = {}
+    
+    SolHooks = {}
+    SolTimers = {}
     
     UnHookReloadFunctions()
 end
 
 Sol._help.SaveHooks = function()
-    savedHooks = Sol.table.DeepCopy(SolHooks)
-    for addonName, frames in pairs(savedHooks) do
-        for frameName, funcs in pairs(frames) do
-            for fnName, fn in pairs(funcs) do
-                if frameName and frameName ~= "_G" then
-                    savedHooks[addonName][frameName][fnName] = _G[frameName][fnName]
-                else
-                    savedHooks[addonName]["_G"][fnName] = _G[fnName]
-                end
+    savedHooks = {}
+    for tableName, fnNames in pairs(SolHooks) do
+        savedHooks[tableName] = {}
+        for fnName, hooks in pairs(fnNames) do
+            savedHooks[tableName][fnName] = {}
+            for i, hook in ipairs(hooks) do 
+                table.insert(savedHooks[tableName][fnName], hook)
             end
         end
     end
 end
 
-
 Sol._help.ReHookAll = function()
     if savedHooks then
-        for addonName, frames in pairs(savedHooks) do
-            for frameName, funcs in pairs(frames) do
-                for fnName, fn in pairs(funcs) do
-                    if frameName and frameName ~= "_G" then
-                        Sol.hooks.Hook(addonName, fnName, fn, _G[frameName])
-                    else
-                        Sol.hooks.Hook(addonName, fnName, fn)
-                    end
+        for tableName, fnNames in pairs(savedHooks) do
+            for fnName, hooks in pairs(fnNames) do
+                for i, hook in ipairs(hooks) do 
+                    Sol.hooks.Hook(hook.addon.name, fnName, hook.newFn, hook.tbl)
                 end
             end
         end
@@ -3269,19 +3736,20 @@ end
 
 local orig_Logout = Logout
 local orig_ReloadUI = ReloadUI
+local orig_CancelLogout = CancelLogout
 
 Sol._help.HookReloadFunctions = function()
     Logout = Sol_Logout
     ReloadUI = Sol_ReloadUI
-    
-    TopPopupDialogs["CAMP"].OnHide = function(this)
-        TopPopup:Hide()
-        UIParent:Show()
-        if ( this.timeleft > 0 ) then
-            CancelLogout()
-            Sol._help.ReHookAll()
-        end
+    if not orig_CancelLogout then
+        orig_CancelLogout = CancelLogout
     end
+    CancelLogout = Sol_CancelLogout
+end
+
+function Sol_CancelLogout()
+    Sol._help.GetOrigCancelLogout()()
+    Sol._help.ReHookAll()
 end
 
 function Sol_Logout()
@@ -3298,8 +3766,21 @@ end
 Sol._help.GetOrigLogout = function()
     return orig_Logout
 end
+
 Sol._help.GetOrigReloadUI = function()
     return orig_ReloadUI
+end
+
+Sol._help.GetOrigCancelLogout = function()
+    return orig_CancelLogout
+end
+
+Sol._help.GetHooks = function(tableName, fnName)
+    return SolHooks[tableName] and SolHooks[tableName][fnName]
+end
+
+Sol._help.GetSavedHooks = function()
+    return savedHooks
 end
 
 Sol._help.HookReloadFunctions()
@@ -3327,8 +3808,25 @@ Sol.constants.QUEST_NORMAL = 2
 
 Sol.constants.DEFAULT_ANIMATION_TIME = 1
 Sol.constants.DEFAULT_FPS = 30
+Sol.constants.FADE = "Fade"
+Sol.constants.SCALE = "Scale"
 
 Sol.constants.FLOATING_PT_PRECISION = 0.001
+    
+-- Blue text is 'flavor' text
+-- Green or yellow's an attribute
+-- Runes are purple
+-- Normal text color is white
+-- Error text is red
+Sol.constants.FLAVOR_TEXT_COLOR = "00BFF2"
+Sol.constants.GREEN_STAT_TEXT_COLOR = "00FF00"
+Sol.constants.YELLOW_STAT_TEXT_COLOR = "FFFF00"
+Sol.constants.RUNE_TEXT_COLOR = "BC2DFF"
+Sol.constants.NORMAL_TEXT_COLOR = "FFFFFF"
+Sol.constants.ERROR_TEXT_COLOR = "FF0000"
+
+Sol.constants.CASH_SHOP_ITEM_COLOR = "A864A8"
+Sol.constants.SKILL_COLOR = "8080FF"
 
 
 if Sol._help.DEBUG then

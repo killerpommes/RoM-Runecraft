@@ -1,7 +1,6 @@
 RCText = {
 	PrintOut = {
-		Say1 = "załadowany!",
-		Say2 = "wpisz /rc, aby otworzyć RuneCraft",
+		Say = "załadowany! Wpisz /rc, aby otworzyć RuneCraft",
 		Description = "Poradnik do tworzenia run."
 	},
 	Menu = {
@@ -9,9 +8,13 @@ RCText = {
 		Tier1 = "Stopień ",
 		Tier2 = "",
 		Buildable = "Możliwe do stworzenia",
-		Needed = "Potrzebne runy"
+		Needed = "Potrzebne runy",
 	},
 	Runes = {
-		Empty = ""
+		Empty = "",	-- comb 5 = 1
+		Deactive = "|cffF5F5F5Wyłączona|r", -- comb 5 = 2
+		NoMake = "|cffFF4500Niewykonalna|r", --comb 5 = 3
+		TreasureHunt = "|cff32CD32Z minigierek|r", --comb 5 = 4
+		NoMakeTreasureHunt = "|cffFF4500Niewykonalna|r\n\n|cff32CD32Z minigierek|r" --comb 5 = 5
 	}
 }

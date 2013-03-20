@@ -2,7 +2,7 @@
 ## Description: All-purpose library for RoM addon development
 ## Notes: See http://theromwiki.com/index.php/Sol
 ## Author: Alleris
-## X-Curse-Packaged-Version: v1.24
+## X-Curse-Packaged-Version: v1.34
 ## X-Curse-Project-Name: Sol
 ## X-Curse-Project-ID: sol
 ## X-Curse-Repository-ID: rom/sol/mainline

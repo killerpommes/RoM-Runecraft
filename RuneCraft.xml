@@ -91,9 +91,9 @@
 					</OnLeave>
 				</Scripts>
 <!--				<NormalTexture file="interface\icons\run_hea_001"/>
-                <PushedTexture file="interface\icons\run_hea_001"/> -->
+                		<PushedTexture file="interface\icons\run_hea_001"/> -->
 				<NormalTexture file="interface\addons\RuneCraft\Gfx\empty"/>
-                <PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
+                		<PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
 			</Button>
 		</Frames>
 		<Scripts>
@@ -205,7 +205,7 @@
 	<!-- MainFrame -->
 	<Frame name="RCMain" inherits="UICommonFrameTemplate" parent="UIParent" movable="true" enableMouse="true">
 		<Size>
-			<AbsDimension x="420" y="350"/>
+			<AbsDimension x="400" y="450"/>
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER">
@@ -217,7 +217,7 @@
 		<Layers>
 			<!--Titel Layer-->
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Title" inherits="GameTitleFont" text="RuneCraft v0.50 first BETA">
+				<FontString name="$parent_Title" inherits="GameTitleFont" text="RuneCraft v0.50">
 					<Anchors>
 						<Anchor point="TOP" relativePoint="TOP">
 							<Offset>
@@ -241,11 +241,23 @@
 			</Layer>
 			<!--Needed Layer-->
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Needed" inherits="GameFontNormal" text="Benoetigte Runen">
+				<FontString name="$parent_Needed" inherits="TitleFontNormal" text="Benoetigte Runen">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
-								<AbsDimension x="230" y="247"/>
+								<AbsDimension x="243" y="247"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<!--Rune Info-->
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Info" inherits="GameFontHighlight" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="227" y="390"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -335,15 +347,24 @@
 					</Anchor>
 				</Anchors>
 			</Button>
+			<Button name="$parent_Tier10" inherits="RCTier_Template" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-80" y="320"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
 			<!-- Listen Slider -->
 			<Slider name="$parent_Slider" inherits="UIPanelScrollBarHaveBackdropTemplate">
 				<Size>
-					<AbsDimension x="16" y="240"/>
+					<AbsDimension x="16" y="345"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="178" y="57"/>
+							<AbsDimension x="180" y="57"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -367,7 +388,7 @@
 			<!--Liste-->
 			<ScrollFrame name="$parent_ScrollFrame" virtual="UIPanelScrollFrameTemplate">
 				<Size>
-					<AbsDimension x="170" y="275"/>
+					<AbsDimension x="170" y="345"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
@@ -376,13 +397,13 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Layers>
+<!--				<Layers>
 					<Layer level="BACKGROUND">
 						<Texture name="$parent_Background" file="interface/common/block-fill" setAllPoints="true">
 							<Color r="0" g="0" b="0" a="0.3" />
 						</Texture>
 					</Layer>
-				</Layers>
+				</Layers> -->
 				<Frames>
 					<Button name="RCList_Item1" inherits="RCList_Template" id="1">
 						<Anchors>
@@ -438,6 +459,33 @@
 							</Anchor>
 						</Anchors>
 					</Button>
+					<Button name="RCList_Item7" inherits="RCList_Template" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="250"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RCList_Item8" inherits="RCList_Template" id="8">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="290"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RCList_Item9" inherits="RCList_Template" id="9">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="330"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
 				</Frames>
 			</ScrollFrame>
 			<!--Preview-->
@@ -445,7 +493,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="40"/>
+							<AbsDimension x="215" y="40"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -455,98 +503,148 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="80"/>
+							<AbsDimension x="210" y="80"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade2" inherits="RCGrade_Template" id="2">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="96"/>
+							<AbsDimension x="210" y="96"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade3" inherits="RCGrade_Template" id="3">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="112"/>
+							<AbsDimension x="210" y="112"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade4" inherits="RCGrade_Template" id="4">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="128"/>
+							<AbsDimension x="210" y="128"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                   			 <OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade5" inherits="RCGrade_Template" id="5">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="144"/>
+							<AbsDimension x="210" y="144"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade6" inherits="RCGrade_Template" id="6">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="160"/>
+							<AbsDimension x="210" y="160"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+              			</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade7" inherits="RCGrade_Template" id="7">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="176"/>
+							<AbsDimension x="210" y="176"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade8" inherits="RCGrade_Template" id="8">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="192"/>
+							<AbsDimension x="210" y="192"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+               			</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade9" inherits="RCGrade_Template" id="9">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="208"/>
+							<AbsDimension x="210" y="208"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade10" inherits="RCGrade_Template" id="10">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="205" y="224"/>
+							<AbsDimension x="210" y="224"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
+				<Scripts>
+                    			<OnClick>
+						RCGrade_OnClick(this);
+					</OnClick>
+                		</Scripts>
 			</Button>
 			<!--Needed Runes-->
 			<Button name="RCPrev_Need1" inherits="RCNeed_Template">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="185" y="268"/>
+							<AbsDimension x="195" y="268"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -555,7 +653,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="255" y="268"/> <!-- x=270 -->
+							<AbsDimension x="290" y="268"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -564,7 +662,16 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="325" y="268"/>
+							<AbsDimension x="195" y="330"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RCPrev_Need4" inherits="RCNeed_Template">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="290" y="330"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
