@@ -1,0 +1,10 @@
+externals:
+    Libs/Sol:
+        url: svn://svn.curseforge.net/rom/sol/mainline/trunk
+        tag: latest
+
+required-dependencies:
+    - sol
+
+optional-dependencies:
+    - addonmanager
