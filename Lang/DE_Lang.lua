@@ -1,7 +1,7 @@
 RCText = {
 	PrintOut = {
 		Say = "geladen! /rc zum öffnen des Menüs",
-		Description = "Its a combination Guid for Runes."
+		Description = "Es ist ein Kombinations Guid für Runen."
 	},
 	Menu = {
 		Grade = "Grad ",
@@ -14,7 +14,7 @@ RCText = {
 		Empty = "",	-- comb 5 = 1
 		Deactive = "|cffF5F5F5Deaktiviert|r", -- comb 5 = 2
 		NoMake = "|cffFF4500Nicht herstellbar|r", --comb 5 = 3
-		TreasureHunt = "|cff32CD32In Minispiel Schatzsuche findbar|r", --comb 5 = 4
-		NoMakeTreasureHunt = "|cffFF4500Nicht herstellbar|r\n\n|cff32CD32In Minispiel Schatzsuche findbar|r" --comb 5 = 5
+		TreasureHunt = "|cff32CD32In Minispiel findbar|r", --comb 5 = 4
+		NoMakeTreasureHunt = "|cffFF4500Nicht herstellbar|r\n\n|cff32CD32In Minispiel findbar|r" --comb 5 = 5
 	}
 }
