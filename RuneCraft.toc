@@ -1,8 +1,8 @@
-## Title: RuneCraft
-## Author: Ganjaaa, odie2, killerpommes
+## X-Curse-Packaged-Version: 0.50
+## X-Curse-Project-Name: RuneCraft
+## X-Curse-Project-ID: runecraft
 
 Libs/Sol/LibStub.lua
 Libs/Sol/Sol.lua
 
 RuneCraft.xml
-

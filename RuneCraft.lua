@@ -1,5 +1,5 @@
 --RuneCraft 0.50
---Author: Ganjaaa, odie2, killerpommes
+--Author: Ganjaaa, odie2, psprofi
 
 local Sol = LibStub("Sol");
 
