@@ -33,7 +33,7 @@ function RCMain_OnEvent(this,event)
 			local addon = {
 				name = "RuneCraft",
 				version = "v0.50",
-				author = "Ganjaaa, Killerpommes, odie2",
+				author = "Ganjaaa, Psprofi, odie2",
 				description = RCText.PrintOut.Description,
 				icon = "Interface/AddOns/RuneCraft/Gfx/RuneCraftIcon.tga",
 				category = "Crafting",
