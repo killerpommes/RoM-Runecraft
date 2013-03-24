@@ -389,26 +389,26 @@ function RC_DBLoad()
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\DE_Runes.lua");
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\DE_Lang.lua");
 			DBLoaded = true;
---		elseif Loc == "FR" then
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\FR_Runes.lua");
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\FR_Lang.lua");
---			DBLoaded = true;
+		elseif Loc == "FR" then
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\FR_Runes.lua");
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\FR_Lang.lua");
+			DBLoaded = true;
 		elseif Loc == "ES" then
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\ES_Runes.lua");
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\ES_Lang.lua");
 			DBLoaded = true;
---		elseif Loc == "CN" then
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\CN_Runes.lua");
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\CN_Lang.lua");
---			DBLoaded = true;
---		elseif Loc == "TW" then
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\TW_Runes.lua");
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\TW_Lang.lua");
---			DBLoaded = true;
---		elseif Loc == "JP" then
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\JP_Runes.lua");
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\JP_Lang.lua");
---			DBLoaded = true;
+		elseif Loc == "CN" then
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\CN_Runes.lua");
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\CN_Lang.lua");
+			DBLoaded = true;
+		elseif Loc == "TW" then
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\TW_Runes.lua");
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\TW_Lang.lua");
+			DBLoaded = true;
+		elseif Loc == "JP" then
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\JP_Runes.lua");
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\JP_Lang.lua");
+			DBLoaded = true;
 		elseif Loc == "RU" then
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\RU_Runes.lua");
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\RU_Lang.lua");
@@ -417,15 +417,14 @@ function RC_DBLoad()
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\PL_Runes.lua");
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\PL_Lang.lua");
 			DBLoaded = true;
---		elseif Loc == "KR" then
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\KR_Runes.lua");
---			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\KR_Lang.lua");
---			DBLoaded = true;
+		elseif Loc == "KR" then
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\KR_Runes.lua");
+			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\KR_Lang.lua");
+			DBLoaded = true;
 		else
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\DB\\EN_Runes.lua");
 			RC_LoadFile("Interface\\AddOns\\RuneCraft\\Lang\\EN_Lang.lua");
 			DBLoaded = true;
-		
 		end
 	end
 end
