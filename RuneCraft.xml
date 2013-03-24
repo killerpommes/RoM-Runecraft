@@ -93,12 +93,14 @@
 <!--				<NormalTexture file="interface\icons\run_hea_001"/>
                 		<PushedTexture file="interface\icons\run_hea_001"/> -->
 				<NormalTexture file="interface\addons\RuneCraft\Gfx\empty"/>
-                		<PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
+                <PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
 			</Button>
 		</Frames>
 		<Scripts>
 			<OnClick>
 				RCList_OnClick(this);
+				<!-- Bugfix test -->
+				RC_TreeList(this);
 			</OnClick>
 			<OnEnter>
 				RCTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 5, 0);
@@ -508,10 +510,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+				</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade2" inherits="RCGrade_Template" id="2">
 				<Anchors>
@@ -522,10 +524,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade3" inherits="RCGrade_Template" id="3">
 				<Anchors>
@@ -536,10 +538,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade4" inherits="RCGrade_Template" id="4">
 				<Anchors>
@@ -550,10 +552,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                   			 <OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade5" inherits="RCGrade_Template" id="5">
 				<Anchors>
@@ -564,10 +566,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade6" inherits="RCGrade_Template" id="6">
 				<Anchors>
@@ -578,10 +580,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-              			</Scripts>
+              	</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade7" inherits="RCGrade_Template" id="7">
 				<Anchors>
@@ -592,10 +594,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade8" inherits="RCGrade_Template" id="8">
 				<Anchors>
@@ -606,10 +608,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-               			</Scripts>
+               	</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade9" inherits="RCGrade_Template" id="9">
 				<Anchors>
@@ -620,10 +622,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade10" inherits="RCGrade_Template" id="10">
 				<Anchors>
@@ -634,10 +636,10 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-                    			<OnClick>
+                    <OnClick>
 						RCGrade_OnClick(this);
 					</OnClick>
-                		</Scripts>
+                </Scripts>
 			</Button>
 			<!--Needed Runes-->
 			<Button name="RCPrev_Need1" inherits="RCNeed_Template">
