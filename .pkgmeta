@@ -8,3 +8,9 @@ required-dependencies:
 
 optional-dependencies:
     - addonmanager
+
+manual-changelog:
+    filename: CHANGELOG
+    markup-type: plain
+
+license-output: LICENSE

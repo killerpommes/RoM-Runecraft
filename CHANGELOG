@@ -1,0 +1,13 @@
+=== v0.50 ===
+    - Current list of all runes and their combinations (Chapter 4 are in the category "Rank 9 Runes")
+    - Display field with information on some runes.
+    - When left-clicking on the Grade of the rune, this is posted in text boxes and chat.
+    - The build list is filled only with the old runes when you click on the big picture of the rune.
+    - Many Bugfixes
+	- Addon translations
+		DE from killerpommes (UI, Database), 
+		EN from Rycerzodie (UI, Database), 
+		PL from Rycerzodie (UI, Database), 
+		RU from tasquer (part UI) and Rycerzodie (part UI, Database),
+		ES from N1h1l3m (UI) and Rycerzodie (Database)
+		
