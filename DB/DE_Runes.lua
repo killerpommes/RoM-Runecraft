@@ -134,7 +134,7 @@ Runes = {
 	},
 	{
 		Name = "Vergeltung",
- 		--id from rune I: 52261
+ 		--id from rune I: 520261
 		Type = 1,
 		Icon = "runes_stone01_02",
 		ID   = "7F045",
@@ -214,7 +214,7 @@ Runes = {
 	},
 	{
 		Name = "Macht",
- 		--id from rune I: 52501
+ 		--id from rune I: 520501
 		Type = 4,
 		Icon = "runes_stone04_01",
 		ID   = "7F135",
