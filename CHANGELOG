@@ -1,3 +1,14 @@
+=== future version ===
+	- bugfixes
+	- update some translations
+	- Addon database translations added
+		CN from killerpommes (Database, UI is missing),
+		FR from killerpommes (Database, UI is missing),
+		JP from killerpommes (Database, UI is missing),
+		KR from killerpommes (Database, UI is missing),
+		TW from killerpommes (Database, UI is missing),
+
+
 === v0.50 ===
     - Current list of all runes and their combinations (Chapter 4 are in the category "Rank 9 Runes")
     - Display field with information on some runes.
