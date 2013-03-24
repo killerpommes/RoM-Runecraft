@@ -14,7 +14,7 @@ Runes = {
 	},
 	{
 		Name = "Harm",
- 		--id from rune I: 520616
+ 		--id from rune I: 520161
 		Type = 0,
 		Icon = "run_wea_054",
 		ID   = "7EFE1",

@@ -6,6 +6,7 @@
 Runes = {
 	{
 		Name = "Lebenskraft",
+ 		--id from rune I: 520081
 		Type = 0,
 		Icon = "run_tel_001",
 		ID   = "7EF91",
@@ -13,6 +14,7 @@ Runes = {
 	},
 	{
 		Name = "Leid",
+ 		--id from rune I: 520161
 		Type = 0,
 		Icon = "run_wea_054",
 		ID   = "7EFE1",
@@ -20,6 +22,7 @@ Runes = {
 	},
 	{
 		Name = "Schlagkraft",
+ 		--id from rune I: 520021
 		Type = 0,
 		Icon = "run_wea_001",
 		ID   = "7EF55",
@@ -27,6 +30,7 @@ Runes = {
 	},
 	{
 		Name = "Magie",
+ 		--id from rune I: 520141
 		Type = 0,
 		Icon = "run_tor_001",
 		ID   = "7EFCD",
@@ -34,6 +38,7 @@ Runes = {
 	},
 	{
 		Name = "Panzer",
+ 		--id from rune I: 520221
 		Type = 0,
 		Icon = "run_tor_011",
 		ID   = "7F01D",
@@ -41,6 +46,7 @@ Runes = {
 	},
 		{
 		Name = "Schlag",
+ 		--id from rune I: 520181
 		Type = 0,
 		Icon = "run_leg_011",
 		ID   = "7EFF5",
@@ -48,6 +54,7 @@ Runes = {
 	},
 	{
 		Name = "Schnelligkeit",
+ 		--id from rune I: 520101
 		Type = 0,
 		Icon = "run_cra_001",
 		ID   = "7EFA5",
@@ -55,6 +62,7 @@ Runes = {
 	},
 	{
 		Name = "Unermüdlichkeit",
+ 		--id from rune I: 520121
 		Type = 0,
 		Icon = "run_hea_020",
 		ID   = "7EFB9",
@@ -62,6 +70,7 @@ Runes = {
 	},
 	{
 		Name = "Verstand",
+ 		--id from rune I: 520061
 		Type = 0,
 		Icon = "run_leg_001",
 		ID   = "7EF7D",
@@ -69,6 +78,7 @@ Runes = {
 	},
 	{
 		Name = "Verteidigung",
+ 		--id from rune I: 520201
 		Type = 0,
 		Icon = "run_hea_011",
 		ID   = "7F009",
@@ -76,6 +86,7 @@ Runes = {
 	},
 	{
 		Name = "Widerstandskraft",
+ 		--id from rune I: 520041
 		Type = 0,
 		Icon = "run_hea_001",
 		ID   = "7EF69",
@@ -83,6 +94,7 @@ Runes = {
 	},
 	{
 		Name = "Aufregung",
+ 		--id from rune I: 520281
 		Type = 1,
 		Icon = "runes_stone01_03",
 		ID   = "7F059",
@@ -90,6 +102,7 @@ Runes = {
 	},
 	{
 		Name = "Mut",
+ 		--id from rune I: 520301
 		Type = 1,
 		Icon = "runes_stone01_04",
 		ID   = "7F06D",
@@ -97,6 +110,7 @@ Runes = {
 	},
 	{
 		Name = "Stimulation",
+ 		--id from rune I: 520321
 		Type = 1,
 		Icon = "runes_stone01_05",
 		ID   = "7F081",
@@ -104,6 +118,7 @@ Runes = {
 	},
 	{
 		Name = "Sühne",
+ 		--id from rune I: 520241
 		Type = 1,
 		Icon = "runes_stone01_01",
 		ID   = "7F031",
@@ -111,6 +126,7 @@ Runes = {
 	},
 	{
 		Name = "Triumph",
+ 		--id from rune I: 520341
 		Type = 1,
 		Icon = "runes_stone01_06",
 		ID   = "7F095",
@@ -118,6 +134,7 @@ Runes = {
 	},
 	{
 		Name = "Vergeltung",
+ 		--id from rune I: 52261
 		Type = 1,
 		Icon = "runes_stone01_02",
 		ID   = "7F045",
@@ -125,6 +142,7 @@ Runes = {
 	},
 	{
 		Name = "Barriere",
+ 		--id from rune I: 520381
 		Type = 2,
 		Icon = "runes_stone02_02",
 		ID   = "7F0BD",
@@ -132,6 +150,7 @@ Runes = {
 	},
 	{
 		Name = "Schaden",
+ 		--id from rune I: 520421
 		Type = 2,
 		Icon = "runes_stone02_04",
 		ID   = "7F0E5",
@@ -139,6 +158,7 @@ Runes = {
 	},
 	{
 		Name = "Widerstand",
+ 		--id from rune I: 520401
 		Type = 2,
 		Icon = "runes_stone02_03",
 		ID   = "7F0D1",
@@ -146,6 +166,7 @@ Runes = {
 	},
 	{
 		Name = "Ärger",
+ 		--id from rune I: 520361
 		Type = 2,
 		Icon = "runes_stone02_01",
 		ID   = "7F0A9",
@@ -153,6 +174,7 @@ Runes = {
 	},
 	{
 		Name = "Fontäne",
+ 		--id from rune I: 520461
 		Type = 3,
 		Icon = "runes_stone03_02",
 		ID   = "7F10D",
@@ -160,6 +182,7 @@ Runes = {
 	},
 	{
 		Name = "Furchtlosigkeit",
+ 		--id from rune I: 520481
 		Type = 3,
 		Icon = "runes_stone03_03",
 		ID   = "7F121",
@@ -167,6 +190,7 @@ Runes = {
 	},
 	{
 		Name = "Leidenschaft",
+ 		--id from rune I: 520441
 		Type = 3,
 		Icon = "runes_stone03_01",
 		ID   = "7F0F9",
@@ -174,6 +198,7 @@ Runes = {
 	},
 	{
 		Name = "Potenzial",
+ 		--id from rune I: 520661
 		Type = 3,
 		Icon = "runes_stone06_01",
 		ID   = "7F1D5",
@@ -181,6 +206,7 @@ Runes = {
 	},
 	{
 		Name = "Beweglichkeit",
+ 		--id from rune I: 520521
 		Type = 4,
 		Icon = "runes_stone04_02",
 		ID   = "7F149",
@@ -188,6 +214,7 @@ Runes = {
 	},
 	{
 		Name = "Macht",
+ 		--id from rune I: 52501
 		Type = 4,
 		Icon = "runes_stone04_01",
 		ID   = "7F135",
@@ -195,6 +222,7 @@ Runes = {
 	},
 	{
 		Name = "Zauberei",
+ 		--id from rune I: 520541
 		Type = 4,
 		Icon = "runes_stone04_03",
 		ID   = "7F15D",
@@ -202,6 +230,7 @@ Runes = {
 	},
 	{
 		Name = "Aggression",
+ 		--id from rune I: 520561
 		Type = 5,
 		Icon = "runes_stone05_01",
 		ID   = "7F171",
@@ -209,6 +238,7 @@ Runes = {
 	},	
 	{
 		Name = "Revolution",
+ 		--id from rune I: 520601
 		Type = 5,
 		Icon = "runes_stone05_03",
 		ID   = "7F199",
@@ -216,6 +246,7 @@ Runes = {
 	},
 	{
 		Name = "Schild",
+ 		--id from rune I: 520641
 		Type = 5,
 		Icon = "runes_stone05_05",
 		ID   = "7F1C1",
@@ -223,6 +254,7 @@ Runes = {
 	},
 	{
 		Name = "Wall",
+ 		--id from rune I: 520621
 		Type = 5,
 		Icon = "runes_stone05_04",
 		ID   = "7F1AD",
@@ -230,6 +262,7 @@ Runes = {
 	},
 	{
 		Name = "Vorsprung",
+ 		--id from rune I: 520581
 		Type = 5,
 		Icon = "runes_stone05_02",
 		ID   = "7F185",
@@ -237,6 +270,7 @@ Runes = {
 	},
 	{
 		Name = "Beute",
+ 		--id from rune I: 520721
 		Type = 6,
 		Icon = "runes_stone06_04",
 		ID   = "7F211",
@@ -244,6 +278,7 @@ Runes = {
 	},
 	{
 		Name = "Erfahrung",
+ 		--id from rune I: 520741
 		Type = 6,
 		Icon = "runes_stone06_05",
 		ID   = "7F225",
@@ -251,6 +286,7 @@ Runes = {
 	},
 		{
 		Name = "Hass",
+ 		--id from rune I: 520681
 		Type = 6,
 		Icon = "runes_stone06_02",
 		ID   = "7F1E9",
@@ -258,6 +294,7 @@ Runes = {
 	},	
 	{
 		Name = "Versöhnung",
+ 		--id from rune I: 520701
 		Type = 6,
 		Icon = "runes_stone06_03",
 		ID   = "7F1FD",
@@ -265,6 +302,7 @@ Runes = {
 	},
 	{
 		Name = "Explosion",
+ 		--id from rune I: 520781
 		Type = 7,
 		Icon = "runes_stone07_02",
 		ID   = "7F24D",
@@ -272,6 +310,7 @@ Runes = {
 	},
 	{
 		Name = "Verhängnis",
+ 		--id from rune I: 520761
 		Type = 7,
 		Icon = "runes_stone07_01",
 		ID   = "7F239",
@@ -279,6 +318,7 @@ Runes = {
 	},
 	{
 		Name = "Wunder",
+ 		--id from rune I: 520821
 		Type = 8,
 		Icon = "runes_stone08_02",
 		ID   = "7F275",
@@ -286,6 +326,7 @@ Runes = {
 	},
 	{
 		Name = "Zorn",
+ 		--id from rune I: 520801
 		Type = 8,
 		Icon = "runes_stone08_01",
 		ID   = "7F261",
@@ -293,6 +334,7 @@ Runes = {
 	},
 	{
 		Name = "Wild",
+ 		--id from rune I: 520871
 		Type = 9,
 		Icon = "power_stone92",
 		ID   = "7f2a7",
@@ -300,6 +342,7 @@ Runes = {
 	},
 	{
 		Name = "Ausdauer",
+ 		--id from rune I: 520891
 		Type = 9,
 		Icon = "power_stone94",
 		ID   = "7f2bb",
@@ -307,6 +350,7 @@ Runes = {
 	},
 	{
 		Name = "Intellekt",
+ 		--id from rune I: 520911
 		Type = 9,
 		Icon = "power_stone96",
 		ID   = "7f2cf",
@@ -314,6 +358,7 @@ Runes = {
 	},
 	{
 		Name = "Geist",
+ 		--id from rune I: 520931
 		Type = 9,
 		Icon = "power_stone98",
 		ID   = "7f2e3",
@@ -321,6 +366,7 @@ Runes = {
 	},
 	{
 		Name = "Geschicklichkeit",
+ 		--id from rune I: 520951
 		Type = 9,
 		Icon = "power_stone100",
 		ID   = "7f2f7",
@@ -328,6 +374,7 @@ Runes = {
 	},
 	{
 		Name = "Leben",
+ 		--id from rune I: 520971
 		Type = 9,
 		Icon = "power_stone102",
 		ID   = "7f30b",
@@ -335,6 +382,7 @@ Runes = {
 	},
 	{
 		Name = "Zauber",
+ 		--id from rune I: 520541
 		Type = 9,
 		Icon = "power_stone104",
 		ID   = "7f31f",
@@ -342,6 +390,7 @@ Runes = {
 	},
 	{
 		Name = "Grausamkeit",
+ 		--id from rune I: 521011
 		Type = 9,
 		Icon = "power_stone106",
 		ID   = "7f333",
@@ -349,6 +398,7 @@ Runes = {
 	},
 	{
 		Name = "Glücksbringer",
+ 		--id from rune I: 521031
 		Type = 9,
 		Icon = "power_stone108",
 		ID   = "7f347",
@@ -356,6 +406,7 @@ Runes = {
 	},
 	{
 		Name = "Schutz",
+ 		--id from rune I: 521051
 		Type = 9,
 		Icon = "power_stone110",
 		ID   = "7f35b",
@@ -363,6 +414,7 @@ Runes = {
 	},
 	{
 		Name = "Abwehr",
+ 		--id from rune I: 521071
 		Type = 9,
 		Icon = "power_stone112",
 		ID   = "7f36f",
@@ -370,6 +422,7 @@ Runes = {
 	},
 	{
 		Name = "Bösartigkeit",
+ 		--id from rune I: 521091
 		Type = 9,
 		Icon = "power_stone114",
 		ID   = "7f383",
@@ -377,6 +430,7 @@ Runes = {
 	},
 	{
 		Name = "Teufel",
+ 		--id from rune I: 521111
 		Type = 9,
 		Icon = "power_stone116",
 		ID   = "7f397",
@@ -384,6 +438,7 @@ Runes = {
 	},
 	{
 		Name = "Auffassungsgabe",
+ 		--id from rune I: 521131
 		Type = 9,
 		Icon = "power_stone118",
 		ID   = "7f3ab",
@@ -391,6 +446,7 @@ Runes = {
 	},
 	{
 		Name = "Leistungsfähigkeit",
+ 		--id from rune I: 521151
 		Type = 9,
 		Icon = "power_stone120",
 		ID   = "7f3bf",
@@ -398,6 +454,7 @@ Runes = {
 	},
 	{
 		Name = "Versessenheit",
+ 		--id from rune I: 521171
 		Type = 9,
 		Icon = "power_stone122",
 		ID   = "7f3d3",
@@ -405,6 +462,7 @@ Runes = {
 	},
 	{
 		Name = "Begreifen",
+ 		--id from rune I: 521191
 		Type = 9,
 		Icon = "power_stone124",
 		ID   = "7f3e7",
@@ -412,6 +470,7 @@ Runes = {
 	},
 	{
 		Name = "Wahnsinn",
+ 		--id from rune I: 521211
 		Type = 9,
 		Icon = "power_stone126",
 		ID   = "7f3fb",
@@ -419,6 +478,7 @@ Runes = {
 	},
 	{
 		Name = "Zerstörung",
+ 		--id from rune I: 521271
 		Type = 9,
 		Icon = "power_stone132",
 		ID   = "7f437",
@@ -426,6 +486,7 @@ Runes = {
 	},
 	{
 		Name = "Unerschrockenheit",
+ 		--id from rune I: 521231
 		Type = 9,
 		Icon = "power_stone128",
 		ID   = "7f40f",
@@ -433,6 +494,7 @@ Runes = {
 	},
 	{
 		Name = "Verzauberung",
+ 		--id from rune I: 521251
 		Type = 9,
 		Icon = "power_stone130",
 		ID   = "7f423",
@@ -440,6 +502,7 @@ Runes = {
 	},
 	{
 		Name = "Schlachtzug",
+ 		--id from rune I: 521291
 		Type = 9,
 		Icon = "power_stone134",
 		ID   = "7f44b",
@@ -447,6 +510,7 @@ Runes = {
 	},
 	{
 		Name = "Fluch",
+ 		--id from rune I: 521311
 		Type = 9,
 		Icon = "power_stone136",
 		ID   = "7f45f",
@@ -454,6 +518,7 @@ Runes = {
 	},
 	{
 		Name = "Präzision",
+ 		--id from rune I: 521331
 		Type = 9,
 		Icon = "power_stone138",
 		ID   = "7f473",
@@ -461,6 +526,7 @@ Runes = {
 	},
 	{
 		Name = "Erleuchtung",
+ 		--id from rune I: 521351
 		Type = 9,
 		Icon = "power_stone140",
 		ID   = "7f487",

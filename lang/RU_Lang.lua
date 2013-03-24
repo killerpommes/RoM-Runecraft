@@ -12,9 +12,9 @@ RCText = {
 	},
 	Runes = {
 		Empty = "",	-- comb 5 = 1
-		Deactive = "|cffF5F5F5Deactivated|r", -- comb 5 = 2
-		NoMake = "|cffFF4500Unenforceable|r", --comb 5 = 3
-		TreasureHunt = "|cff32CD32From mini-games|r", --comb 5 = 4
-		NoMakeTreasureHunt = "|cffFF4500Unenforceable|r\n\n|cff32CD32From mini-games|r" --comb 5 = 5
+		Deactive = "|cffF5F5F5Отключенные|r", -- comb 5 = 2
+		NoMake = "|cffFF4500Не крафтятся.|r", --comb 5 = 3
+		TreasureHunt = "|cff32CD32Руны из малатин.|r", --comb 5 = 4
+		NoMakeTreasureHunt = "|cffFF4500Не крафтятся|r\n\n|cff32CD32Руны из малатин|r" --comb 5 = 5
 	}
 }
