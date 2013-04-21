@@ -76,11 +76,8 @@
 				</Anchors>		
 				<Scripts>
 					<OnClick>
-						if this:GetParent():GetID() ~= 99 then
-							RCList_OnClick(this:GetParent());
-						else
-							RC_TreeList(this:GetParent());
-						end
+						RCList_OnClick(this:GetParent());
+						RC_TreeList(this:GetParent());
 					</OnClick>
 					<OnEnter>
 						RCTooltip:SetOwner(this:GetParent(), "ANCHOR_TOPRIGHT", 5, 0);
@@ -90,16 +87,14 @@
 						RCTooltip:Hide();
 					</OnLeave>
 				</Scripts>
-<!--				<NormalTexture file="interface\icons\run_hea_001"/>
-                		<PushedTexture file="interface\icons\run_hea_001"/> -->
+
 				<NormalTexture file="interface\addons\RuneCraft\Gfx\empty"/>
-                <PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
+               			<PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
 			</Button>
 		</Frames>
 		<Scripts>
 			<OnClick>
 				RCList_OnClick(this);
-				<!-- Bugfix test -->
 				RC_TreeList(this);
 			</OnClick>
 			<OnEnter>
@@ -399,13 +394,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-<!--				<Layers>
-					<Layer level="BACKGROUND">
-						<Texture name="$parent_Background" file="interface/common/block-fill" setAllPoints="true">
-							<Color r="0" g="0" b="0" a="0.3" />
-						</Texture>
-					</Layer>
-				</Layers> -->
 				<Frames>
 					<Button name="RCList_Item1" inherits="RCList_Template" id="1">
 						<Anchors>
