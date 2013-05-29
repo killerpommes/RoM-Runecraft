@@ -1,5 +1,5 @@
 === v0.55 ===
-	- bugfixes
+	- bugfix: Buildlist is filled only when you click on the big picture of the rune.
 	- update some translations
 	- Addon database translations added
 		CN from killerpommes (Database, UI is missing),
