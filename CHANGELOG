@@ -1,4 +1,4 @@
-=== future version ===
+=== v0.55 ===
 	- bugfixes
 	- update some translations
 	- Addon database translations added
@@ -10,6 +10,9 @@
 
 
 === v0.50 ===
+
+	From this Version, this addon is based on a Mod from psprofi aka Killerpommes
+	
     - Current list of all runes and their combinations (Chapter 4 are in the category "Rank 9 Runes")
     - Display field with information on some runes.
     - When left-clicking on the Grade of the rune, this is posted in text boxes and chat.
