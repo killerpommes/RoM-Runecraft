@@ -1,4 +1,9 @@
-=== v0.55 ===
+=== 0.56 ===
+	- Addon database translations added
+		TW from e65130 (UI)
+
+
+=== 0.55 ===
 	- bugfix: Buildlist is filled only when you click on the big picture of the rune.
 	- update some translations
 	- Addon database translations added
@@ -9,7 +14,7 @@
 		TW from killerpommes (Database, UI is missing),
 
 
-=== v0.50 ===
+=== 0.50 ===
 
 	From this Version, this addon is based on a Mod from psprofi aka Killerpommes
 	
