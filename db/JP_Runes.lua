@@ -531,6 +531,54 @@ Runes = {
 		Icon = "power_stone140",
 		ID   = "7f487",
 		Comb = {25,25,21,19,0}
+	},
+	{
+		Name = "Tyrant",
+ 		--id from rune I: 521371
+		Type = 9,
+		Icon = "power_stone142",
+		ID   = "7f49b",
+		Comb = {27,27,23,24,0}
+	},
+	{
+		Name = "Tyrant (alt.)",
+ 		--id from rune I: 521371
+		Type = 9,
+		Icon = "power_stone142",
+		ID   = "7f49b",
+		Comb = {63,65,0,0,6}
+	},
+	{
+		Name = "Assassin",
+ 		--id from rune I: 521391
+		Type = 9,
+		Icon = "power_stone144",
+		ID   = "7f4af",
+		Comb = {26,26,22,24,0}
+	},
+	{
+		Name = "Assassin (alt.)",
+ 		--id from rune I: 521391
+		Type = 9,
+		Icon = "power_stone144",
+		ID   = "7f4af",
+		Comb = {64,63,0,0,6}
+	},
+	{
+		Name = "Sage",
+ 		--id from rune I: 521411
+		Type = 9,
+		Icon = "power_stone146",
+		ID   = "7f4c3",
+		Comb = {28,28,22,23,0}
+	},
+	{
+		Name = "Sage (alt.)",
+ 		--id from rune I: 521411
+		Type = 9,
+		Icon = "power_stone146",
+		ID   = "7f4c3",
+		Comb = {64,65,0,0,6}
 	}
 }
 

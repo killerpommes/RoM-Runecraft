@@ -95,27 +95,29 @@ function RC_Tree(start,id,ids)
 		if Runes[id].Comb[5] ~= 2 then
 			if Runes[id].Comb[5] ~= 3 then
 				if Runes[id].Comb[5] ~= 5 then
-					if start ~= 0 then
-						if Runes[id].Type ~= 0 then
-							baum[1] = Runes[id].Name;
-							baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+					if Runes[id].Comb[5] ~= 6 then
+						if start ~= 0 then
+							if Runes[id].Type ~= 0 then
+								baum[1] = Runes[id].Name;
+								baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+							else
+								baum[1] = Runes[id].Name;
+								baum[2] = 0;
+							end
 						else
-							baum[1] = Runes[id].Name;
-							baum[2] = 0;
-						end
-					else
-						if Runes[id].Type ~= 0 then
-							baum[1] = Runes[id].Name;
-							baum[2] = {};
-							baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
-							baum[3] = Runes[ids].Name;
-							baum[4] = {};
-							baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2]);
-						else
-							baum[1] = Runes[id].Name;
-							baum[2] = 0;
-							baum[3] = Runes[ids].Name;
-							baum[4] = 0;
+							if Runes[id].Type ~= 0 then
+								baum[1] = Runes[id].Name;
+								baum[2] = {};
+								baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+								baum[3] = Runes[ids].Name;
+								baum[4] = {};
+								baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2]);
+							else
+								baum[1] = Runes[id].Name;
+								baum[2] = 0;
+								baum[3] = Runes[ids].Name;
+								baum[4] = 0;
+							end
 						end
 					end
 				end
@@ -231,6 +233,13 @@ function RC_SetPrev(id)
 						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
 						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
 					end
+					if Runes[id].Comb[5] == 6 then
+						getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
+						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+					end
 		end	
 	end
 	if Runes[id].Comb[1] ~= 0 then
@@ -267,6 +276,13 @@ function RC_SetPrev(id)
 					end
 					if Runes[id].Comb[5] == 5 then
 						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
+						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+					end
+					if Runes[id].Comb[5] == 6 then
+						getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
 						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
 						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
 						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
@@ -310,6 +326,13 @@ function RC_SetPrev(id)
 					end
 					if Runes[id].Comb[5] == 5 then
 						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
+						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
+					end
+					if Runes[id].Comb[5] == 6 then
+						getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
 						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
 						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
 						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);

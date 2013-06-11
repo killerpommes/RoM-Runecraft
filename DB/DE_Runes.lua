@@ -3,9 +3,10 @@
 -- NoMake - comb 5 = 3
 -- TreasureHunt - comb 5 = 4
 -- NoMakeTreasureHunt - comb 5 = 5
+-- AltMake - comb 5 = 6
 Runes = {
 	{
-		Name = "Lebenskraft",
+		Name = "Lebenskraft", -- 1
  		--id from rune I: 520081
 		Type = 0,
 		Icon = "run_tel_001",
@@ -13,7 +14,7 @@ Runes = {
 		Comb = {5,9,0,0,0}
 	},
 	{
-		Name = "Leid",
+		Name = "Leid", -- 2
  		--id from rune I: 520161
 		Type = 0,
 		Icon = "run_wea_054",
@@ -21,7 +22,7 @@ Runes = {
 		Comb = {3,9,0,0,0}
 	},
 	{
-		Name = "Schlagkraft",
+		Name = "Schlagkraft", -- 3
  		--id from rune I: 520021
 		Type = 0,
 		Icon = "run_wea_001",
@@ -29,7 +30,7 @@ Runes = {
 		Comb = {1,11,0,0,0}
 	},
 	{
-		Name = "Magie",
+		Name = "Magie", -- 4
  		--id from rune I: 520141
 		Type = 0,
 		Icon = "run_tor_001",
@@ -37,7 +38,7 @@ Runes = {
 		Comb = {1,5,0,0,0}
 	},
 	{
-		Name = "Panzer",
+		Name = "Panzer", -- 5
  		--id from rune I: 520221
 		Type = 0,
 		Icon = "run_tor_011",
@@ -45,7 +46,7 @@ Runes = {
 		Comb = {1,14,0,0,0}
 	},
 		{
-		Name = "Schlag",
+		Name = "Schlag", -- 6
  		--id from rune I: 520181
 		Type = 0,
 		Icon = "run_leg_011",
@@ -53,7 +54,7 @@ Runes = {
 		Comb = {4,9,0,0,0}
 	},
 	{
-		Name = "Schnelligkeit",
+		Name = "Schnelligkeit", -- 7
  		--id from rune I: 520101
 		Type = 0,
 		Icon = "run_cra_001",
@@ -61,7 +62,7 @@ Runes = {
 		Comb = {9,11,0,0,0}
 	},
 	{
-		Name = "Unermüdlichkeit",
+		Name = "Unermüdlichkeit", -- 8
  		--id from rune I: 520121
 		Type = 0,
 		Icon = "run_hea_020",
@@ -69,7 +70,7 @@ Runes = {
 		Comb = {10,11,0,0,0}
 	},
 	{
-		Name = "Verstand",
+		Name = "Verstand", -- 9
  		--id from rune I: 520061
 		Type = 0,
 		Icon = "run_leg_001",
@@ -77,7 +78,7 @@ Runes = {
 		Comb = {1,6,0,0,0}
 	},
 	{
-		Name = "Verteidigung",
+		Name = "Verteidigung", -- 10
  		--id from rune I: 520201
 		Type = 0,
 		Icon = "run_hea_011",
@@ -85,7 +86,7 @@ Runes = {
 		Comb = {7,11,0,0,0}
 	},
 	{
-		Name = "Widerstandskraft",
+		Name = "Widerstandskraft", -- 11
  		--id from rune I: 520041
 		Type = 0,
 		Icon = "run_hea_001",
@@ -93,7 +94,7 @@ Runes = {
 		Comb = {3,7,0,0,0}
 	},
 	{
-		Name = "Aufregung",
+		Name = "Aufregung", -- 12
  		--id from rune I: 520281
 		Type = 1,
 		Icon = "runes_stone01_03",
@@ -101,7 +102,7 @@ Runes = {
 		Comb = {1,18,0,0,0}
 	},
 	{
-		Name = "Mut",
+		Name = "Mut", -- 13
  		--id from rune I: 520301
 		Type = 1,
 		Icon = "runes_stone01_04",
@@ -109,7 +110,7 @@ Runes = {
 		Comb = {4,11,0,0,0}
 	},
 	{
-		Name = "Stimulation",
+		Name = "Stimulation", -- 14
  		--id from rune I: 520321
 		Type = 1,
 		Icon = "runes_stone01_05",
@@ -117,7 +118,7 @@ Runes = {
 		Comb = {7,8,0,0,0}
 	},
 	{
-		Name = "Sühne",
+		Name = "Sühne", -- 15
  		--id from rune I: 520241
 		Type = 1,
 		Icon = "runes_stone01_01",
@@ -125,7 +126,7 @@ Runes = {
 		Comb = {8,11,0,0,0}
 	},
 	{
-		Name = "Triumph",
+		Name = "Triumph", -- 16
  		--id from rune I: 520341
 		Type = 1,
 		Icon = "runes_stone01_06",
@@ -133,7 +134,7 @@ Runes = {
 		Comb = {8,9,0,0,0}
 	},
 	{
-		Name = "Vergeltung",
+		Name = "Vergeltung", -- 17
  		--id from rune I: 520261
 		Type = 1,
 		Icon = "runes_stone01_02",
@@ -141,7 +142,7 @@ Runes = {
 		Comb = {1,9,0,0,0}
 	},
 	{
-		Name = "Barriere",
+		Name = "Barriere", -- 18
  		--id from rune I: 520381
 		Type = 2,
 		Icon = "runes_stone02_02",
@@ -149,7 +150,7 @@ Runes = {
 		Comb = {13,16,0,0,0}
 	},
 	{
-		Name = "Schaden",
+		Name = "Schaden", -- 19
  		--id from rune I: 520421
 		Type = 2,
 		Icon = "runes_stone02_04",
@@ -157,7 +158,7 @@ Runes = {
 		Comb = {12,13,0,0,0}
 	},
 	{
-		Name = "Widerstand",
+		Name = "Widerstand", -- 20
  		--id from rune I: 520401
 		Type = 2,
 		Icon = "runes_stone02_03",
@@ -165,7 +166,7 @@ Runes = {
 		Comb = {13,14,0,0,0}
 	},
 	{
-		Name = "Ärger",
+		Name = "Ärger", -- 21
  		--id from rune I: 520361
 		Type = 2,
 		Icon = "runes_stone02_01",
@@ -173,7 +174,7 @@ Runes = {
 		Comb = {12,16,0,0,0}
 	},
 	{
-		Name = "Fontäne",
+		Name = "Fontäne", -- 22
  		--id from rune I: 520461
 		Type = 3,
 		Icon = "runes_stone03_02",
@@ -181,7 +182,7 @@ Runes = {
 		Comb = {19,20,0,0,4}
 	},
 	{
-		Name = "Furchtlosigkeit",
+		Name = "Furchtlosigkeit", -- 23
  		--id from rune I: 520481
 		Type = 3,
 		Icon = "runes_stone03_03",
@@ -189,7 +190,7 @@ Runes = {
 		Comb = {18,20,0,0,4}
 	},
 	{
-		Name = "Leidenschaft",
+		Name = "Leidenschaft", -- 24
  		--id from rune I: 520441
 		Type = 3,
 		Icon = "runes_stone03_01",
@@ -197,7 +198,7 @@ Runes = {
 		Comb = {18,21,0,0,4}
 	},
 	{
-		Name = "Potenzial",
+		Name = "Potenzial", -- 25
  		--id from rune I: 520661
 		Type = 3,
 		Icon = "runes_stone06_01",
@@ -205,7 +206,7 @@ Runes = {
 		Comb = {19,21,0,0,4}
 	},
 	{
-		Name = "Beweglichkeit",
+		Name = "Beweglichkeit", -- 26
  		--id from rune I: 520521
 		Type = 4,
 		Icon = "runes_stone04_02",
@@ -213,7 +214,7 @@ Runes = {
 		Comb = {22,24,0,0,4}
 	},
 	{
-		Name = "Macht",
+		Name = "Macht", -- 27
  		--id from rune I: 520501
 		Type = 4,
 		Icon = "runes_stone04_01",
@@ -221,7 +222,7 @@ Runes = {
 		Comb = {23,24,0,0,4}
 	},
 	{
-		Name = "Zauberei",
+		Name = "Zauberei", -- 28
  		--id from rune I: 520541
 		Type = 4,
 		Icon = "runes_stone04_03",
@@ -229,7 +230,7 @@ Runes = {
 		Comb = {22,23,0,0,4}
 	},
 	{
-		Name = "Aggression",
+		Name = "Aggression", -- 29
  		--id from rune I: 520561
 		Type = 5,
 		Icon = "runes_stone05_01",
@@ -237,7 +238,7 @@ Runes = {
 		Comb = {26,27,0,0,0}
 	},	
 	{
-		Name = "Revolution",
+		Name = "Revolution", -- 30
  		--id from rune I: 520601
 		Type = 5,
 		Icon = "runes_stone05_03",
@@ -245,7 +246,7 @@ Runes = {
 		Comb = {26,28,0,0,4}
 	},
 	{
-		Name = "Schild",
+		Name = "Schild", -- 31
  		--id from rune I: 520641
 		Type = 5,
 		Icon = "runes_stone05_05",
@@ -253,7 +254,7 @@ Runes = {
 		Comb = {0,0,0,0,5}
 	},
 	{
-		Name = "Wall",
+		Name = "Wall", -- 32
  		--id from rune I: 520621
 		Type = 5,
 		Icon = "runes_stone05_04",
@@ -261,7 +262,7 @@ Runes = {
 		Comb = {0,0,0,0,5}
 	},
 	{
-		Name = "Vorsprung",
+		Name = "Vorsprung", -- 33
  		--id from rune I: 520581
 		Type = 5,
 		Icon = "runes_stone05_02",
@@ -269,7 +270,7 @@ Runes = {
 		Comb = {27,28,0,0,4}
 	},
 	{
-		Name = "Beute",
+		Name = "Beute", -- 34
  		--id from rune I: 520721
 		Type = 6,
 		Icon = "runes_stone06_04",
@@ -277,7 +278,7 @@ Runes = {
 		Comb = {0,0,0,0,3} 
 	},
 	{
-		Name = "Erfahrung",
+		Name = "Erfahrung", -- 35
  		--id from rune I: 520741
 		Type = 6,
 		Icon = "runes_stone06_05",
@@ -285,7 +286,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 		{
-		Name = "Hass",
+		Name = "Hass", -- 36
  		--id from rune I: 520681
 		Type = 6,
 		Icon = "runes_stone06_02",
@@ -293,7 +294,7 @@ Runes = {
 		Comb = {29,32,0,0,0}
 	},	
 	{
-		Name = "Versöhnung",
+		Name = "Versöhnung", -- 37
  		--id from rune I: 520701
 		Type = 6,
 		Icon = "runes_stone06_03",
@@ -301,7 +302,7 @@ Runes = {
 		Comb = {31,33,0,0,0}
 	},
 	{
-		Name = "Explosion",
+		Name = "Explosion", -- 38
  		--id from rune I: 520781
 		Type = 7,
 		Icon = "runes_stone07_02",
@@ -309,7 +310,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 	{
-		Name = "Verhängnis",
+		Name = "Verhängnis", -- 39
  		--id from rune I: 520761
 		Type = 7,
 		Icon = "runes_stone07_01",
@@ -317,7 +318,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 	{
-		Name = "Wunder",
+		Name = "Wunder", -- 40
  		--id from rune I: 520821
 		Type = 8,
 		Icon = "runes_stone08_02",
@@ -325,7 +326,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 	{
-		Name = "Zorn",
+		Name = "Zorn", -- 41
  		--id from rune I: 520801
 		Type = 8,
 		Icon = "runes_stone08_01",
@@ -333,7 +334,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 	{
-		Name = "Wild",
+		Name = "Wild", -- 42
  		--id from rune I: 520871
 		Type = 9,
 		Icon = "power_stone92",
@@ -341,7 +342,7 @@ Runes = {
 		Comb = {3,3,11,1,0}
 	},
 	{
-		Name = "Ausdauer",
+		Name = "Ausdauer", -- 43
  		--id from rune I: 520891
 		Type = 9,
 		Icon = "power_stone94",
@@ -349,7 +350,7 @@ Runes = {
 		Comb = {11,11,3,7,0}
 	},
 	{
-		Name = "Intellekt",
+		Name = "Intellekt", -- 44
  		--id from rune I: 520911
 		Type = 9,
 		Icon = "power_stone96",
@@ -357,7 +358,7 @@ Runes = {
 		Comb = {9,9,1,6,0}
 	},
 	{
-		Name = "Geist",
+		Name = "Geist", -- 45
  		--id from rune I: 520931
 		Type = 9,
 		Icon = "power_stone98",
@@ -365,7 +366,7 @@ Runes = {
 		Comb = {1,1,9,5,0}
 	},
 	{
-		Name = "Geschicklichkeit",
+		Name = "Geschicklichkeit", -- 46
  		--id from rune I: 520951
 		Type = 9,
 		Icon = "power_stone100",
@@ -373,7 +374,7 @@ Runes = {
 		Comb = {7,7,11,9,0}
 	},
 	{
-		Name = "Leben",
+		Name = "Leben", -- 47
  		--id from rune I: 520971
 		Type = 9,
 		Icon = "power_stone102",
@@ -381,7 +382,7 @@ Runes = {
 		Comb = {8,8,11,10,0}
 	},
 	{
-		Name = "Zauber",
+		Name = "Zauber", -- 48
  		--id from rune I: 520541
 		Type = 9,
 		Icon = "power_stone104",
@@ -389,7 +390,7 @@ Runes = {
 		Comb = {4,4,1,5,0}
 	},
 	{
-		Name = "Grausamkeit",
+		Name = "Grausamkeit", -- 49
  		--id from rune I: 521011
 		Type = 9,
 		Icon = "power_stone106",
@@ -397,7 +398,7 @@ Runes = {
 		Comb = {2,2,3,9,0}
 	},
 	{
-		Name = "Glücksbringer",
+		Name = "Glücksbringer", -- 50
  		--id from rune I: 521031
 		Type = 9,
 		Icon = "power_stone108",
@@ -405,7 +406,7 @@ Runes = {
 		Comb = {6,6,9,4,0}
 	},
 	{
-		Name = "Schutz",
+		Name = "Schutz", -- 51
  		--id from rune I: 521051
 		Type = 9,
 		Icon = "power_stone110",
@@ -413,7 +414,7 @@ Runes = {
 		Comb = {10,10,11,7,0}
 	},
 	{
-		Name = "Abwehr",
+		Name = "Abwehr", -- 52
  		--id from rune I: 521071
 		Type = 9,
 		Icon = "power_stone112",
@@ -421,7 +422,7 @@ Runes = {
 		Comb = {5,5,1,4,0}
 	},
 	{
-		Name = "Bösartigkeit",
+		Name = "Bösartigkeit", -- 53
  		--id from rune I: 521091
 		Type = 9,
 		Icon = "power_stone114",
@@ -429,7 +430,7 @@ Runes = {
 		Comb = {15,15,11,8,4}
 	},
 	{
-		Name = "Teufel",
+		Name = "Teufel", -- 54
  		--id from rune I: 521111
 		Type = 9,
 		Icon = "power_stone116",
@@ -437,7 +438,7 @@ Runes = {
 		Comb = {17,17,9,1,0}
 	},
 	{
-		Name = "Auffassungsgabe",
+		Name = "Auffassungsgabe", -- 55
  		--id from rune I: 521131
 		Type = 9,
 		Icon = "power_stone118",
@@ -445,7 +446,7 @@ Runes = {
 		Comb = {12,12,3,1,4}
 	},
 	{
-		Name = "Leistungsfähigkeit",
+		Name = "Leistungsfähigkeit", -- 56
  		--id from rune I: 521151
 		Type = 9,
 		Icon = "power_stone120",
@@ -453,7 +454,7 @@ Runes = {
 		Comb = {13,13,11,4,4}
 	},
 	{
-		Name = "Versessenheit",
+		Name = "Versessenheit", -- 57
  		--id from rune I: 521171
 		Type = 9,
 		Icon = "power_stone122",
@@ -461,7 +462,7 @@ Runes = {
 		Comb = {14,14,7,8,4}
 	},
 	{
-		Name = "Begreifen",
+		Name = "Begreifen", -- 58
  		--id from rune I: 521191
 		Type = 9,
 		Icon = "power_stone124",
@@ -469,7 +470,7 @@ Runes = {
 		Comb = {16,16,9,8,4}
 	},
 	{
-		Name = "Wahnsinn",
+		Name = "Wahnsinn", -- 59
  		--id from rune I: 521211
 		Type = 9,
 		Icon = "power_stone126",
@@ -477,7 +478,7 @@ Runes = {
 		Comb = {21,21,12,16,0}
 	},
 	{
-		Name = "Zerstörung",
+		Name = "Zerstörung", -- 60
  		--id from rune I: 521271
 		Type = 9,
 		Icon = "power_stone132",
@@ -485,7 +486,7 @@ Runes = {
 		Comb = {19,19,12,13,0}
 	},
 	{
-		Name = "Unerschrockenheit",
+		Name = "Unerschrockenheit", -- 61
  		--id from rune I: 521231
 		Type = 9,
 		Icon = "power_stone128",
@@ -493,7 +494,7 @@ Runes = {
 		Comb = {18,18,13,16,0}
 	},
 	{
-		Name = "Verzauberung",
+		Name = "Verzauberung", -- 62
  		--id from rune I: 521251
 		Type = 9,
 		Icon = "power_stone130",
@@ -501,7 +502,7 @@ Runes = {
 		Comb = {20,20,13,14,0}
 	},
 	{
-		Name = "Schlachtzug",
+		Name = "Schlachtzug", -- 63
  		--id from rune I: 521291
 		Type = 9,
 		Icon = "power_stone134",
@@ -509,7 +510,7 @@ Runes = {
 		Comb = {24,24,21,18,0}
 	},
 	{
-		Name = "Fluch",
+		Name = "Fluch", -- 64
  		--id from rune I: 521311
 		Type = 9,
 		Icon = "power_stone136",
@@ -517,7 +518,7 @@ Runes = {
 		Comb = {22,22,20,19,0}
 	},
 	{
-		Name = "Präzision",
+		Name = "Präzision", -- 65
  		--id from rune I: 521331
 		Type = 9,
 		Icon = "power_stone138",
@@ -525,12 +526,60 @@ Runes = {
 		Comb = {23,23,18,20,0}
 	},
 	{
-		Name = "Erleuchtung",
+		Name = "Erleuchtung", -- 66
  		--id from rune I: 521351
 		Type = 9,
 		Icon = "power_stone140",
 		ID   = "7f487",
 		Comb = {25,25,21,19,0}
+	},
+	{
+		Name = "Tyrann", -- 67
+ 		--id from rune I: 521371
+		Type = 9,
+		Icon = "power_stone142",
+		ID   = "7f49b",
+		Comb = {27,27,23,24,0}
+	},
+	{
+		Name = "Tyrann (alt.)", -- 68
+ 		--id from rune I: 521371
+		Type = 9,
+		Icon = "power_stone142",
+		ID   = "7f49b",
+		Comb = {63,65,0,0,6}
+	},
+	{
+		Name = "Assassine", -- 69
+ 		--id from rune I: 521391
+		Type = 9,
+		Icon = "power_stone144",
+		ID   = "7f4af",
+		Comb = {26,26,22,24,0}
+	},
+	{
+		Name = "Assassine (alt.)", -- 70
+ 		--id from rune I: 521391
+		Type = 9,
+		Icon = "power_stone144",
+		ID   = "7f4af",
+		Comb = {64,63,0,0,6}
+	},
+	{
+		Name = "Weiser", -- 71
+ 		--id from rune I: 521411
+		Type = 9,
+		Icon = "power_stone146",
+		ID   = "7f4c3",
+		Comb = {28,28,22,23,0}
+	},
+	{
+		Name = "Weiser (alt.)", -- 72
+ 		--id from rune I: 521411
+		Type = 9,
+		Icon = "power_stone146",
+		ID   = "7f4c3",
+		Comb = {64,65,0,0,6}
 	}
 }
 

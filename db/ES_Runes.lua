@@ -465,6 +465,48 @@ Runes = {
 		Icon = "power_stone140",
 		ID   = "7f487",
 		Comb = {25,25,21,19,0}
+	},
+	{
+		Name = "Tirano",
+		Type = 9,
+		Icon = "power_stone142",
+		ID   = "7f49b",
+		Comb = {27,27,23,24,0}
+	},
+	{
+		Name = "Tirano (alt.)",
+		Type = 9,
+		Icon = "power_stone142",
+		ID   = "7f49b",
+		Comb = {63,65,0,0,6}
+	},
+	{
+		Name = "Asesino",
+		Type = 9,
+		Icon = "power_stone144",
+		ID   = "7f4af",
+		Comb = {26,26,22,24,0}
+	},
+	{
+		Name = "Asesino (alt.)",
+		Type = 9,
+		Icon = "power_stone144",
+		ID   = "7f4af",
+		Comb = {64,63,0,0,6}
+	},
+	{
+		Name = "Sabio",
+		Type = 9,
+		Icon = "power_stone146",
+		ID   = "7f4c3",
+		Comb = {28,28,22,23,0}
+	},
+	{
+		Name = "Sabio (alt.)",
+		Type = 9,
+		Icon = "power_stone146",
+		ID   = "7f4c3",
+		Comb = {64,65,0,0,6}
 	}
 }
 

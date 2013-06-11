@@ -1,3 +1,11 @@
+== future version ==
+	- added new runes Tyrant, Assassin, Sage to database  	
+		TODO: add translations for CN?, FR, JP?, KR?, RU, TW
+		TODO: translate the (alt.) part
+	- added info alternative recipe
+		TODO: Translate new UI setting in TW, RU, PL, KR, ES
+
+
 === 0.56 ===
 	- Addon translations added
 		TW from e65130 (UI)
