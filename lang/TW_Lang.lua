@@ -16,6 +16,6 @@ RCText = {
 		NoMake = "|cffFF4500未開放|r", --comb 5 = 3
 		TreasureHunt = "|cff32CD32提取遊戲資料|r", --comb 5 = 4
 		NoMakeTreasureHunt = "|cffFF4500未開放|r\n\n|cff32CD32提取遊戲資料|r", --comb 5 = 5
-		AltMake = "Alternative recipe" -- comb 5 = 6
+		AltMake = "特殊合成公式" -- comb 5 = 6
 	}
 }

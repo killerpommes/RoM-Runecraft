@@ -541,7 +541,7 @@ Runes = {
 		Comb = {27,27,23,24,0}
 	},
 	{
-		Name = "Tyrant (alt.)",
+		Name = "Tyrant (特)",
  		--id from rune I: 521371
 		Type = 9,
 		Icon = "power_stone142",
@@ -557,7 +557,7 @@ Runes = {
 		Comb = {26,26,22,24,0}
 	},
 	{
-		Name = "Assassin (alt.)",
+		Name = "Assassin (特)",
  		--id from rune I: 521391
 		Type = 9,
 		Icon = "power_stone144",
@@ -573,7 +573,7 @@ Runes = {
 		Comb = {28,28,22,23,0}
 	},
 	{
-		Name = "Sage (alt.)",
+		Name = "Sage (特)",
  		--id from rune I: 521411
 		Type = 9,
 		Icon = "power_stone146",

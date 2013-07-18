@@ -16,6 +16,6 @@ RCText = {
 		NoMake = "|cffFF4500Niewykonalna|r", --comb 5 = 3
 		TreasureHunt = "|cff32CD32Z minigierek|r", --comb 5 = 4
 		NoMakeTreasureHunt = "|cffFF4500Niewykonalna|r\n\n|cff32CD32Z minigierek|r", --comb 5 = 5
-		AltMake = "Alternative recipe" -- comb 5 = 6
+		AltMake = "Inny sposób" -- comb 5 = 6
 	}
 }

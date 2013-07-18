@@ -474,7 +474,7 @@ Runes = {
 		Comb = {27,27,23,24,0}
 	},
 	{
-		Name = "Tyrant (alt.)",
+		Name = "Tyrant (альт.)",
 		Type = 9,
 		Icon = "power_stone142",
 		ID   = "7f49b",
@@ -488,7 +488,7 @@ Runes = {
 		Comb = {26,26,22,24,0}
 	},
 	{
-		Name = "Assassin (alt.)",
+		Name = "Assassin (альт.)",
 		Type = 9,
 		Icon = "power_stone144",
 		ID   = "7f4af",
@@ -502,7 +502,7 @@ Runes = {
 		Comb = {28,28,22,23,0}
 	},
 	{
-		Name = "Sage (alt.)",
+		Name = "Sage (альт.)",
 		Type = 9,
 		Icon = "power_stone146",
 		ID   = "7f4c3",

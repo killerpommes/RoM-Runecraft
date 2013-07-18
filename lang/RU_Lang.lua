@@ -16,6 +16,6 @@ RCText = {
 		NoMake = "|cffFF4500Не крафтятся.|r", --comb 5 = 3
 		TreasureHunt = "|cff32CD32Руны из малатин.|r", --comb 5 = 4
 		NoMakeTreasureHunt = "|cffFF4500Не крафтятся|r\n\n|cff32CD32Руны из малатин|r", --comb 5 = 5
-		AltMake = "Alternative recipe" -- comb 5 = 6
+		AltMake = "Альтернативный рецепт" -- comb 5 = 6
 	}
 }
