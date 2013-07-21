@@ -481,14 +481,14 @@ Runes = {
 		Comb = {63,65,0,0,6}
 	},
 	{
-		Name = "Assassin",
+		Name = "Ассасин",
 		Type = 9,
 		Icon = "power_stone144",
 		ID   = "7f4af",
 		Comb = {26,26,22,24,0}
 	},
 	{
-		Name = "Assassin (альт.)",
+		Name = "Ассасин (альт.)",
 		Type = 9,
 		Icon = "power_stone144",
 		ID   = "7f4af",

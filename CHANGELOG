@@ -1,11 +1,14 @@
-== future version ==
-	- added new runes Tyrant, Assassin, Sage to Database
-		TODO: add translations for CN?, FR, JP?, KR?, RU, TW
-		TODO: translate the (alt.) part
-	- added info alternative recipe
-		TODO: Translate new UI setting in KR
+=== 0.57 ===
 	- Addon translations added
-		FR from Adinar (UI)
+         FR from Adinar (UI)
+	- added new runes Tyrant, Assassin, Sage to database
+	- added info alternative recipe to runes possible to create with other technique (and add to their name "alt.")
+	- changed default texts (e.g. if addon crashed)
+	- set "TreeFrame" default to "off"
+	- added buttons to show/hide "TreeFrame"
+	- added mini buttons to AddonManager (on its bar)
+	- updated some translations
+
 
 
 === 0.56 ===

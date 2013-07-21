@@ -32,13 +32,14 @@ function RCMain_OnEvent(this,event)
 		if ( AddonManager ) then
 			local addon = {
 				name = "RuneCraft",
-				version = "v0.50",
+				version = "v0.57",
 				author = "Ganjaaa, Psprofi, odie2",
 				description = RCText.PrintOut.Description,
 				icon = "Interface/AddOns/RuneCraft/Gfx/RuneCraftIcon.tga",
+				miniButton = RCMiniButton,
 				category = "Crafting",
 				slashCommands = "/rc",
-				onClickScript = RCMain_Show
+				configFrame = RCMain
 			}		
 			if AddonManager.RegisterAddonTable then
 				AddonManager.RegisterAddonTable(addon);
@@ -476,7 +477,7 @@ function RCMain_Show()
 		RCTree:Hide();
 	else
 		RCMain:Show();
-		RCTree:Show();
+		RCTree:Hide();
 	end
 end
 ---- PrintOut

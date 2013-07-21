@@ -16,6 +16,7 @@ RCText = {
 		NoMake = "|cffFF4500생산 된 할 수 없습니다|r", --comb 5 = 3
 		TreasureHunt = "|cff32CD32미니 가지 게임에서|r", --comb 5 = 4
 		NoMakeTreasureHunt = "|cffFF4500생산 된 할 수 없습니다|r\n\n|cff32CD32미니 가지 게임에서|r", --comb 5 = 5
-		AltMake = "Alternative recipe" -- comb 5 = 6
+		AltMake = "|cff00B3FFAlternative recipe|r", -- comb 5 = 6
+		ShortAlt = "alt." -- not working now, text is directly in runes database
 	}
 }

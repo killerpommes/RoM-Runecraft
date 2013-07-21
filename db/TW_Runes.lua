@@ -533,7 +533,7 @@ Runes = {
 		Comb = {25,25,21,19,0}
 	},
 	{
-		Name = "Tyrant",
+		Name = "殘虐",
  		--id from rune I: 521371
 		Type = 9,
 		Icon = "power_stone142",
@@ -541,7 +541,7 @@ Runes = {
 		Comb = {27,27,23,24,0}
 	},
 	{
-		Name = "Tyrant (特)",
+		Name = "殘虐 (特)",
  		--id from rune I: 521371
 		Type = 9,
 		Icon = "power_stone142",
@@ -549,7 +549,7 @@ Runes = {
 		Comb = {63,65,0,0,6}
 	},
 	{
-		Name = "Assassin",
+		Name = "刺殺",
  		--id from rune I: 521391
 		Type = 9,
 		Icon = "power_stone144",
@@ -557,7 +557,7 @@ Runes = {
 		Comb = {26,26,22,24,0}
 	},
 	{
-		Name = "Assassin (特)",
+		Name = "刺殺 (特)",
  		--id from rune I: 521391
 		Type = 9,
 		Icon = "power_stone144",
@@ -565,7 +565,7 @@ Runes = {
 		Comb = {64,63,0,0,6}
 	},
 	{
-		Name = "Sage",
+		Name = "智者",
  		--id from rune I: 521411
 		Type = 9,
 		Icon = "power_stone146",
@@ -573,7 +573,7 @@ Runes = {
 		Comb = {28,28,22,23,0}
 	},
 	{
-		Name = "Sage (特)",
+		Name = "智者 (特)",
  		--id from rune I: 521411
 		Type = 9,
 		Icon = "power_stone146",

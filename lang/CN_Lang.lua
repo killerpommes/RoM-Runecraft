@@ -1,7 +1,7 @@
 RCText = {
 	PrintOut = {
 		Say = "loaded! /rc to open RuneCraft",
-		Description = "Its a combination Guid for Runes."
+		Description = "Its a combination Guide for Runes."
 	},
 	Menu = {
 		Grade = "Grade ",
@@ -16,6 +16,7 @@ RCText = {
 		NoMake = "|cffFF4500Not produceable|r", --comb 5 = 3
 		TreasureHunt = "|cff32CD32From mini-games|r", --comb 5 = 4
 		NoMakeTreasureHunt = "|cffFF4500Not produceable|r\n\n|cff32CD32From mini-games|r", --comb 5 = 5
-		AltMake = "Alternative recipe" -- comb 5 = 6
+		AltMake = "|cff00B3FFAlternative recipe|r", -- comb 5 = 6
+		ShortAlt = "alt." -- not working now, text is directly in runes database
 	}
 }

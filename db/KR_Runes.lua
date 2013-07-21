@@ -549,7 +549,7 @@ Runes = {
 		Comb = {63,65,0,0,6}
 	},
 	{
-		Name = "Assassin",
+		Name = "척살",
  		--id from rune I: 521391
 		Type = 9,
 		Icon = "power_stone144",
@@ -557,7 +557,7 @@ Runes = {
 		Comb = {26,26,22,24,0}
 	},
 	{
-		Name = "Assassin (alt.)",
+		Name = "척살 (alt.)",
  		--id from rune I: 521391
 		Type = 9,
 		Icon = "power_stone144",
