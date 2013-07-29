@@ -8,7 +8,8 @@ RCText = {
 		Tier1 = "랭크 ",
 		Tier2 = " 룬",
 		Buildable = "제작가능 룬",
-		Needed = "필요한 룬"
+		Needed = "필요한 룬",
+		BuildList = "Build List"
 	},
 	Runes = {
 		Empty = "",	-- comb 5 = 1

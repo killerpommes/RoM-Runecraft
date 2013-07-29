@@ -1,3 +1,16 @@
+=== 0.57-1 ===
+	- Bugfix for TW runes database
+		Thanks to e65130
+	- BuildList:
+		- changed size of BuildList
+		- added 20 lines to BuildList
+		- now runes with alternative recipe are showing in BuildList
+		- now runes, which need 3 runes to create, are showing in BuildList
+		- now runes, which need 4 runes to create, are showing correct in BuildList (but rune 3 and 4 probably still are not showing)
+		- added header to BuildList (for now only in English)
+		- corrected buttons to toggle BuildList: now after close BuildList or Main frame, is visible correct button
+	- improved code
+
 === 0.57 ===
 	- Addon translations added
          FR from Adinar (UI)

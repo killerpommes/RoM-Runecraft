@@ -293,7 +293,7 @@ Runes = {
 		Comb = {29,32,0,0,0}
 	},	
 	{
-		Name = "仇恨",
+		Name = "和解",
  		--id from rune I: 520701
 		Type = 6,
 		Icon = "runes_stone06_03",
@@ -317,7 +317,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 	{
-		Name = "神怒",
+		Name = "神蹟",
  		--id from rune I: 520821
 		Type = 8,
 		Icon = "runes_stone08_02",
@@ -381,7 +381,7 @@ Runes = {
 		Comb = {8,8,11,10,0}
 	},
 	{
-		Name = "巫術",
+		Name = "法力",
  		--id from rune I: 520541
 		Type = 9,
 		Icon = "power_stone104",
@@ -421,12 +421,20 @@ Runes = {
 		Comb = {5,5,1,4,0}
 	},
 	{
-		Name = "Ferocity", --RECHECK
+		Name = "強悍", --RECHECK
  		--id from rune I: 521091
 		Type = 9,
 		Icon = "power_stone114",
 		ID   = "7f383",
 		Comb = {15,15,11,8,4}
+	},
+	{
+		Name = "強悍 (特)", --RECHECK
+ 		--id from rune I: 521091
+		Type = 9,
+		Icon = "power_stone114",
+		ID   = "7f383",
+		Comb = {43,47,0,0,6}
 	},
 	{
 		Name = "法魔",
@@ -437,12 +445,28 @@ Runes = {
 		Comb = {17,17,9,1,0}
 	},
 	{
+		Name = "法魔 (特)",
+ 		--id from rune I: 521111
+		Type = 9,
+		Icon = "power_stone116",
+		ID   = "7f397",
+		Comb = {44,45,0,0,6}
+	},
+	{
 		Name = "智取",
  		--id from rune I: 521131
 		Type = 9,
 		Icon = "power_stone118",
 		ID   = "7f3ab",
 		Comb = {12,12,3,1,4}
+	},
+	{
+		Name = "智取 (特)",
+ 		--id from rune I: 521131
+		Type = 9,
+		Icon = "power_stone118",
+		ID   = "7f3ab",
+		Comb = {42,45,0,0,6}
 	},
 	{
 		Name = "賢能",
@@ -453,12 +477,28 @@ Runes = {
 		Comb = {13,13,11,4,4}
 	},
 	{
+		Name = "賢能 (特)",
+ 		--id from rune I: 521151
+		Type = 9,
+		Icon = "power_stone120",
+		ID   = "7f3bf",
+		Comb = {43,48,0,0,6}
+	},
+	{
 		Name = "敏銳",
  		--id from rune I: 521171
 		Type = 9,
 		Icon = "power_stone122",
 		ID   = "7f3d3",
 		Comb = {14,14,7,8,4}
+	},
+	{
+		Name = "敏銳 (特)",
+ 		--id from rune I: 521171
+		Type = 9,
+		Icon = "power_stone122",
+		ID   = "7f3d3",
+		Comb = {46,47,0,0,6}
 	},
 	{
 		Name = "英明",
@@ -469,12 +509,28 @@ Runes = {
 		Comb = {16,16,9,8,4}
 	},
 	{
+		Name = "英明 (特)",
+ 		--id from rune I: 521191
+		Type = 9,
+		Icon = "power_stone124",
+		ID   = "7f3e7",
+		Comb = {47,44,0,0,6}
+	},
+	{
 		Name = "瘋狂",
  		--id from rune I: 521211
 		Type = 9,
 		Icon = "power_stone126",
 		ID   = "7f3fb",
 		Comb = {21,21,12,16,0}
+	},
+	{
+		Name = "瘋狂 (特)",
+ 		--id from rune I: 521211
+		Type = 9,
+		Icon = "power_stone126",
+		ID   = "7f3fb",
+		Comb = {57,63,0,0,6}
 	},
 	{
 		Name = "毀滅",
@@ -485,12 +541,28 @@ Runes = {
 		Comb = {19,19,12,13,0}
 	},
 	{
+		Name = "毀滅 (特)",
+ 		--id from rune I: 521271
+		Type = 9,
+		Icon = "power_stone132",
+		ID   = "7f437",
+		Comb = {59,57,0,0,6}
+	},
+	{
 		Name = "無畏",
  		--id from rune I: 521231
 		Type = 9,
 		Icon = "power_stone128",
 		ID   = "7f40f",
 		Comb = {18,18,13,16,0}
+	},
+	{
+		Name = "無畏 (特)",
+ 		--id from rune I: 521231
+		Type = 9,
+		Icon = "power_stone128",
+		ID   = "7f40f",
+		Comb = {63,59,0,0,6}
 	},
 	{
 		Name = "幻術",
@@ -501,12 +573,28 @@ Runes = {
 		Comb = {20,20,13,14,0}
 	},
 	{
+		Name = "幻術 (特)",
+ 		--id from rune I: 521251
+		Type = 9,
+		Icon = "power_stone130",
+		ID   = "7f423",
+		Comb = {61,59,0,0,6}
+	},
+	{
 		Name = "奇襲",
  		--id from rune I: 521291
 		Type = 9,
 		Icon = "power_stone134",
 		ID   = "7f44b",
 		Comb = {24,24,21,18,0}
+	},
+	{
+		Name = "奇襲 (特)",
+ 		--id from rune I: 521291
+		Type = 9,
+		Icon = "power_stone134",
+		ID   = "7f44b",
+		Comb = {69,65,0,0,6}
 	},
 	{
 		Name = "咒術",
@@ -517,6 +605,14 @@ Runes = {
 		Comb = {22,22,20,19,0}
 	},
 	{
+		Name = "咒術 (特)",
+ 		--id from rune I: 521311
+		Type = 9,
+		Icon = "power_stone136",
+		ID   = "7f45f",
+		Comb = {67,71,0,0,6}
+	},
+	{
 		Name = "精準",
  		--id from rune I: 521331
 		Type = 9,
@@ -525,12 +621,28 @@ Runes = {
 		Comb = {23,23,18,20,0}
 	},
 	{
+		Name = "精準 (特)",
+ 		--id from rune I: 521331
+		Type = 9,
+		Icon = "power_stone138",
+		ID   = "7f473",
+		Comb = {71,69,0,0,6}
+	},
+	{
 		Name = "啟發",
  		--id from rune I: 521351
 		Type = 9,
 		Icon = "power_stone140",
 		ID   = "7f487",
 		Comb = {25,25,21,19,0}
+	},
+	{
+		Name = "啟發 (特)",
+ 		--id from rune I: 521351
+		Type = 9,
+		Icon = "power_stone140",
+		ID   = "7f487",
+		Comb = {65,67,0,0,6}
 	},
 	{
 		Name = "殘虐",
@@ -546,7 +658,7 @@ Runes = {
 		Type = 9,
 		Icon = "power_stone142",
 		ID   = "7f49b",
-		Comb = {63,65,0,0,6}
+		Comb = {73,77,0,0,6}
 	},
 	{
 		Name = "刺殺",
@@ -562,7 +674,7 @@ Runes = {
 		Type = 9,
 		Icon = "power_stone144",
 		ID   = "7f4af",
-		Comb = {64,63,0,0,6}
+		Comb = {75,73,0,0,6}
 	},
 	{
 		Name = "智者",
@@ -578,7 +690,7 @@ Runes = {
 		Type = 9,
 		Icon = "power_stone146",
 		ID   = "7f4c3",
-		Comb = {64,65,0,0,6}
+		Comb = {75,77,0,0,6}
 	}
 }
 

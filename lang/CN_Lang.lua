@@ -8,7 +8,8 @@ RCText = {
 		Tier1 = "Rank ",
 		Tier2 = " Runes",
 		Buildable = "Buildable Runes",
-		Needed = "Needed Runes"
+		Needed = "Needed Runes",
+		BuildList = "Build List"
 	},
 	Runes = {
 		Empty = "",	-- comb 5 = 1

@@ -8,7 +8,8 @@ RCText = {
 		Tier1 = "階層 ",
 		Tier2 = " 符文",
 		Buildable = "符文組合",
-		Needed = "所需要的符文"
+		Needed = "所需要的符文",
+		BuildList = "Build List"
 	},
 	Runes = {
 		Empty = "",	-- comb 5 = 1

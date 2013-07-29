@@ -32,7 +32,7 @@ function RCMain_OnEvent(this,event)
 		if ( AddonManager ) then
 			local addon = {
 				name = "RuneCraft",
-				version = "v0.57",
+				version = "v0.57-2",
 				author = "Ganjaaa, Psprofi, odie2",
 				description = RCText.PrintOut.Description,
 				icon = "Interface/AddOns/RuneCraft/Gfx/RuneCraftIcon.tga",
@@ -88,40 +88,86 @@ function RCTooltip_Set(this)
 		end
 	end
 end
+--BuildList title
+function RCTree_Title()
+	getglobal("RCTree_Title"):SetText(RCText.Menu.BuildList);
+end	
 --Interne Funktionen
 ---- Erstellt BaumArray
 function RC_Tree(start,id,ids)
 	local baum = {};
-	if Runes[id].Comb[3] == 0 then
-		if Runes[id].Comb[5] ~= 2 then
-			if Runes[id].Comb[5] ~= 3 then
-				if Runes[id].Comb[5] ~= 5 then
-					if Runes[id].Comb[5] ~= 6 then
-						if start ~= 0 then
-							if Runes[id].Type ~= 0 then
-								baum[1] = Runes[id].Name;
-								baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
-							else
-								baum[1] = Runes[id].Name;
-								baum[2] = 0;
-							end
-						else
-							if Runes[id].Type ~= 0 then
-								baum[1] = Runes[id].Name;
-								baum[2] = {};
-								baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
-								baum[3] = Runes[ids].Name;
-								baum[4] = {};
-								baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2]);
-							else
-								baum[1] = Runes[id].Name;
-								baum[2] = 0;
-								baum[3] = Runes[ids].Name;
-								baum[4] = 0;
-							end
-						end
-					end
-				end
+	if Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
+		if start ~= 0 then
+			if Runes[id].Type ~= 0 then
+				baum[1] = Runes[id].Name;
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+			else
+				baum[1] = Runes[id].Name;
+				baum[2] = 0;
+			end
+		else
+			if Runes[id].Type ~= 0 then
+				baum[1] = Runes[id].Name;
+				baum[2] = {};
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+				baum[3] = Runes[ids].Name;
+				baum[4] = {};
+				baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2]);
+			else
+				baum[1] = Runes[id].Name;
+				baum[2] = 0;
+				baum[3] = Runes[ids].Name;
+				baum[4] = 0;
+			end
+		end
+	end
+	if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
+		if start ~= 0 then
+			if Runes[id].Type ~= 0 then
+				baum[1] = Runes[id].Name;
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
+			else
+				baum[1] = Runes[id].Name;
+				baum[2] = 0;
+			end
+		else
+			if Runes[id].Type ~= 0 then
+				baum[1] = Runes[id].Name;
+				baum[2] = {};
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
+				baum[3] = Runes[ids].Name;
+				baum[4] = {};
+				baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2],Runes[ids].Comb[3]);
+			else
+				baum[1] = Runes[id].Name;
+				baum[2] = 0;
+				baum[3] = Runes[ids].Name;
+				baum[4] = 0;
+			end
+		end
+	end
+	if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] ~= 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
+		if start ~= 0 then
+			if Runes[id].Type ~= 0 then
+				baum[1] = Runes[id].Name;
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
+			else
+				baum[1] = Runes[id].Name;
+				baum[2] = 0;
+			end
+		else
+			if Runes[id].Type ~= 0 then
+				baum[1] = Runes[id].Name;
+				baum[2] = {};
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
+				baum[3] = Runes[ids].Name;
+				baum[4] = {};
+				baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2],Runes[ids].Comb[3],Runes[ids].Comb[4]);
+			else
+				baum[1] = Runes[id].Name;
+				baum[2] = 0;
+				baum[3] = Runes[ids].Name;
+				baum[4] = 0;
 			end
 		end
 	end
@@ -157,18 +203,26 @@ end
 function RC_AddLine(str)
 	if str ~= "--------------------" then
 		local id = RC_InArray(Runes,str);
-		for i=1,19,1 do
+		for i=1,40,1 do
 			if getglobal("RCTree_Line"..i):GetText() == "" then
 				if Runes[id].Type == 0 then
 					getglobal("RCTree_Line"..i):SetText(Runes[id].Name); 
 				else
-					getglobal("RCTree_Line"..i):SetText(Runes[id].Name.."="..Runes[Runes[id].Comb[1]].Name.."+"..Runes[Runes[id].Comb[2]].Name); 
+					if Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 then
+						getglobal("RCTree_Line"..i):SetText(Runes[id].Name.."="..Runes[Runes[id].Comb[1]].Name.."+"..Runes[Runes[id].Comb[2]].Name); 
+					end
+					if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] == 0 then	
+						getglobal("RCTree_Line"..i):SetText(Runes[id].Name.."="..Runes[Runes[id].Comb[1]].Name.."+"..Runes[Runes[id].Comb[2]].Name.."+"..Runes[Runes[id].Comb[3]].Name); 
+					end
+					if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] ~= 0 then
+						getglobal("RCTree_Line"..i):SetText(Runes[id].Name.."="..Runes[Runes[id].Comb[1]].Name.."+"..Runes[Runes[id].Comb[2]].Name.."+"..Runes[Runes[id].Comb[3]].Name.."+"..Runes[Runes[id].Comb[4]].Name); 
+					end
 				end
 				break;
 			end		
 		end
 	else
-		for i=1,19,1 do
+		for i=1,40,1 do
 			if getglobal("RCTree_Line"..i):GetText() == "" then
 				getglobal("RCTree_Line"..i):SetText(str); 
 				break;
@@ -178,7 +232,7 @@ function RC_AddLine(str)
 end
 
 function RC_TreeClear()
-	for i=1,19,1 do
+	for i=1,40,1 do
 		if i==2 or i==5 or i== 10 or i==19 then
 			getglobal("RCTree_Line"..i):SetText("--------------------");
 		else
@@ -197,150 +251,180 @@ function RC_SetPrev(id)
 		end
 		getglobal("RCPrev_Grade"..i.."_Name"):SetText(gtext);
 	end
-	if Runes[id].Comb[1] == 0 then
-		if Runes[id].Comb[2] == 0 then
-			if Runes[id].Comb[5] == 0 then
-						getglobal("RCMain_Info"):SetText("");
-						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 2 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
-						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 3 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
-						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 4 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
-						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 5 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
-						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 6 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
-						RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-		end	
-	end
-	if Runes[id].Comb[1] ~= 0 then
-		if Runes[id].Comb[2] ~= 0 then
-			if Runes[id].Comb[3] == 0 then
-				if Runes[id].Comb[4] == 0 then	
-					if Runes[id].Comb[5] == 0 then
-						getglobal("RCMain_Info"):SetText();
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 2 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 3 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 4 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 5 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-					if Runes[id].Comb[5] == 6 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
-						RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
-					end
-				end
-			end
+	if Runes[id].Comb[1] == 0 and Runes[id].Comb[2] == 0 then
+		if Runes[id].Comb[5] == 0 then
+			getglobal("RCMain_Info"):SetText("");
+			RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 2 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
+			RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 3 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
+			RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 4 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 5 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 6 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
+			RC_SetIconTemplate("RCPrev_Need1",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need2",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
 		end
 	end
-	if Runes[id].Comb[1] ~= 0 then
-		if Runes[id].Comb[2] ~= 0 then
-			if Runes[id].Comb[3] ~= 0 then
-				if Runes[id].Comb[4] ~= 0 then
-					if Runes[id].Comb[5] == 0 then
-						getglobal("RCMain_Info"):SetText("");
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
-						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
-					end
-					if Runes[id].Comb[5] == 2 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
-						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
-					end
-					if Runes[id].Comb[5] == 3 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
-						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
-					end
-					if Runes[id].Comb[5] == 4 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
-						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
-					end
-					if Runes[id].Comb[5] == 5 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
-						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
-					end
-					if Runes[id].Comb[5] == 6 then
-						getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
-						RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
-						RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
-						RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
-						RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
-					end
-				end
-			end
+	if Runes[id].Comb[1] ~= 0 and Runes[id].Comb[2] ~= 0 and Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 then	
+		if Runes[id].Comb[5] == 0 then
+			getglobal("RCMain_Info"):SetText();
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 2 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 3 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 4 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 5 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 6 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",RCText.Runes.Empty,"");
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+	end
+	if Runes[id].Comb[1] ~= 0 and Runes[id].Comb[2] ~= 0 and Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] == 0 then
+		if Runes[id].Comb[5] == 0 then
+			getglobal("RCMain_Info"):SetText("");
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 2 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 3 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 4 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 5 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+		if Runes[id].Comb[5] == 6 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",RCText.Runes.Empty,"");
+		end
+	end
+	if Runes[id].Comb[1] ~= 0 and Runes[id].Comb[2] ~= 0 and Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] ~= 0 then
+		if Runes[id].Comb[5] == 0 then
+			getglobal("RCMain_Info"):SetText("");
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
+		end
+		if Runes[id].Comb[5] == 2 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.Deactive);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
+		end
+		if Runes[id].Comb[5] == 3 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMake);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
+		end
+		if Runes[id].Comb[5] == 4 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.TreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
+		end
+		if Runes[id].Comb[5] == 5 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.NoMakeTreasureHunt);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
+		end
+		if Runes[id].Comb[5] == 6 then
+			getglobal("RCMain_Info"):SetText(RCText.Runes.AltMake);
+			RC_SetIconTemplate("RCPrev_Need1",Runes[Runes[id].Comb[1]].Name,Runes[Runes[id].Comb[1]].Icon);
+			RC_SetIconTemplate("RCPrev_Need2",Runes[Runes[id].Comb[2]].Name,Runes[Runes[id].Comb[2]].Icon);
+			RC_SetIconTemplate("RCPrev_Need3",Runes[Runes[id].Comb[3]].Name,Runes[Runes[id].Comb[3]].Icon);
+			RC_SetIconTemplate("RCPrev_Need4",Runes[Runes[id].Comb[4]].Name,Runes[Runes[id].Comb[4]].Icon);
 		end
 	end
 end

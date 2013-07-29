@@ -225,6 +225,15 @@
 		<Size>
 			<AbsDimension x="400" y="450"/>
 		</Size>
+		<Scripts>
+			<OnHide>
+				RCTreeShow:Show();
+				RCTreeHide:Hide();
+			</OnHide>
+			<OnLoad>
+				RCTree_Title();
+			</OnLoad>
+		</Scripts>
 		<Anchors>
 			<Anchor point="CENTER">
 				<Offset>
@@ -235,7 +244,7 @@
 		<Layers>
 			<!--Titel Layer-->
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Title" inherits="GameTitleFont" text="RuneCraft v0.57">
+				<FontString name="$parent_Title" inherits="GameTitleFont" text="RuneCraft v0.57-2">
 					<Anchors>
 						<Anchor point="TOP" relativePoint="TOP">
 							<Offset>
@@ -748,16 +757,34 @@
 	<!-- TreeFrame -->
 	<Frame name="RCTree" inherits="UICommonFrameTemplate" parent="UIParent" movable="true" enableMouse="true">
 		<Size>
-			<AbsDimension x="200" y="350"/>
+			<AbsDimension x="300" y="450"/>
 		</Size>
+		<Scripts>
+			<OnHide>
+				RCTreeShow:Show();
+				RCTreeHide:Hide();
+			</OnHide>
+		</Scripts>
 		<Anchors>
 			<Anchor point="CENTER" relativeTo="RCMain">
 				<Offset>
-					<AbsDimension x="310" y="0"/>
+					<AbsDimension x="355" y="0"/>
 				</Offset>
 			</Anchor>
 		</Anchors>
 		<Layers>
+			<!--Title Layer-->
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Title" inherits="GameTitleFont" text="Build List">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-5" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
 			<Layer level="ARTWORK">
 				<FontString name="$parent_Line1" inherits="GameFontNormal" text="FreePlate">
 					<Anchors>
@@ -962,6 +989,237 @@
 						<Anchor point="TOP" relativePoint="TOP">
 							<Offset>
 								<AbsDimension x="10" y="210"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line20" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="220"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line21" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="230"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line22" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="240"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line23" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="250"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line24" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="260"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line25" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="270"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line26" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="280"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line27" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="290"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line28" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="300"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line29" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="310"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line30" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="320"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line31" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="330"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line32" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="340"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line33" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="350"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line34" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="360"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line35" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="370"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line36" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="380"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line37" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="390"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line38" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="400"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line39" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="410"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Line40" inherits="GameFontNormal" text="FreePlate">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="10" y="420"/>
 							</Offset>
 						</Anchor>
 					</Anchors>

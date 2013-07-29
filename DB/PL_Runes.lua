@@ -3,6 +3,7 @@
 -- NoMake - comb 5 = 3
 -- TreasureHunt - comb 5 = 4
 -- NoMakeTreasureHunt - comb 5 = 5
+-- Alt - comb 5 = 6
 Runes = {
 	{
 		Name = "Witalność",
@@ -285,7 +286,7 @@ Runes = {
 		Comb = {0,0,0,0,3}
 	},
 	{
-		Name = "Gniew",
+		Name = "Gniew (2)",
 		Type = 8,
 		Icon = "runes_stone08_01",
 		ID   = "7F261",

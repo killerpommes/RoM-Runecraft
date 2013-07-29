@@ -9,6 +9,7 @@ RCText = {
 		Tier2 = "",
 		Buildable = "Możliwe do stworzenia",
 		Needed = "Potrzebne runy",
+		BuildList = "Lista tworzenia"
 	},
 	Runes = {
 		Empty = "",	-- comb 5 = 1
