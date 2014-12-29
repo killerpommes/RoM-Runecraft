@@ -5,3 +5,7 @@ Libs/Sol/LibStub.lua
 Libs/Sol/Sol.lua
 
 RuneCraft.xml
+-- X-Curse-Packaged-Version: 0.56-2-gf1a71b5
+-- X-Curse-Project-Name: RuneCraft
+-- X-Curse-Project-ID: runecraft
+-- X-Curse-Repository-ID: rom/runecraft/mainline

@@ -36,7 +36,7 @@
 		</Size>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Titel" inherits="GameFontNormal" text="Error (maybe no text)">
+				<FontString name="$parent_Titel" inherits="GameFontNormal" text="Error (maybe no text)" justifyH="CENTER">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
@@ -230,9 +230,6 @@
 				RCTreeShow:Show();
 				RCTreeHide:Hide();
 			</OnHide>
-			<OnLoad>
-				RCTree_Title();
-			</OnLoad>
 		</Scripts>
 		<Anchors>
 			<Anchor point="CENTER">

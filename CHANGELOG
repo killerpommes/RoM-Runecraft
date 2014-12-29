@@ -1,4 +1,4 @@
-=== 0.57-1 ===
+=== 0.57-2 ===
 	- Bugfix for TW runes database
 		Thanks to e65130
 	- BuildList:
@@ -22,6 +22,12 @@
 	- added mini buttons to AddonManager (on its bar)
 	- updated some translations
 
+== future version ==
+	- added new runes Tyrant, Assassin, Sage to database  	
+		TODO: add translations for CN?, FR, JP?, KR?, RU, TW
+		TODO: translate the (alt.) part
+	- added info alternative recipe
+		TODO: Translate new UI setting in TW, RU, PL, KR, ES
 
 
 === 0.56 ===
@@ -32,7 +38,7 @@
 === 0.55 ===
 	- bugfix: Buildlist is filled only when you click on the big picture of the rune.
 	- update some translations
-	- Addon translations added
+	- Addon database translations added
 		CN from killerpommes (Database, UI is missing),
 		FR from killerpommes (Database, UI is missing),
 		JP from killerpommes (Database, UI is missing),
