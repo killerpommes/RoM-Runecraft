@@ -9,15 +9,16 @@ local AktTier = 0;
 
 local MaxScroll = 9;
 
-VERSION = "v0.60";
+local VERSION = "v0.60";
 
 -- OnLoad
 function RCMain_OnLoad(this)
 	this:RegisterEvent("VARIABLES_LOADED");
 	RC_DBLoad();
 	--Tier Name Set
-	for i = 1,10,1 do
-		_G["RCMain_Tier"..i.."_Titel"]:SetText(string.gsub(RCText.Menu.Tier,"<TIER>",(i-1)));
+	for i = 0,7,1 do
+		if i == 0 then _G["RCMain_Tier"..i]:SetText(RCText.Menu.UnrankedTier);
+		else _G["RCMain_Tier"..i]:SetText(string.gsub(RCText.Menu.Tier,"<TIER>",(i-1))); end;
 	end
 	--Tier Layer
 	_G["RCMain_Tier"]:SetText(string.gsub(RCText.Menu.Tier,"<TIER>","0"));
@@ -98,7 +99,7 @@ function RC_Tree(start,id,ids)
 	local baum = {};
 	if Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
 		if start ~= 0 then
-			if Runes[id].Type ~= 0 then
+			if Runes[id].Type > 0 then
 				baum[1] = Runes[id].Name;
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
 			else
@@ -106,7 +107,7 @@ function RC_Tree(start,id,ids)
 				baum[2] = 0;
 			end
 		else
-			if Runes[id].Type ~= 0 then
+			if Runes[id].Type > 0 then
 				baum[1] = Runes[id].Name;
 				baum[2] = {};
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
@@ -123,7 +124,7 @@ function RC_Tree(start,id,ids)
 	end
 	if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
 		if start ~= 0 then
-			if Runes[id].Type ~= 0 then
+			if Runes[id].Type > 0 then
 				baum[1] = Runes[id].Name;
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
 			else
@@ -131,7 +132,7 @@ function RC_Tree(start,id,ids)
 				baum[2] = 0;
 			end
 		else
-			if Runes[id].Type ~= 0 then
+			if Runes[id].Type > 0 then
 				baum[1] = Runes[id].Name;
 				baum[2] = {};
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
@@ -148,7 +149,7 @@ function RC_Tree(start,id,ids)
 	end
 	if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] ~= 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
 		if start ~= 0 then
-			if Runes[id].Type ~= 0 then
+			if Runes[id].Type > 0 then
 				baum[1] = Runes[id].Name;
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
 			else
@@ -156,7 +157,7 @@ function RC_Tree(start,id,ids)
 				baum[2] = 0;
 			end
 		else
-			if Runes[id].Type ~= 0 then
+			if Runes[id].Type > 0 then
 				baum[1] = Runes[id].Name;
 				baum[2] = {};
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
@@ -175,10 +176,12 @@ function RC_Tree(start,id,ids)
 end
 
 function RC_TreeList(this)
-	local id = RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText());
-	local tree = RC_Tree(1,id,id);
-	RC_TreeClear();
-	RC_TreeFollow(tree,1);
+	if RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText()) then
+		local id = RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText());
+		local tree = RC_Tree(1,id,id);
+		RC_TreeClear();
+		RC_TreeFollow(tree,1);
+	end;
 end
 
 function RC_TreeFollow(tbl,space)
@@ -255,15 +258,23 @@ function RC_SetPrev(id)
 	if Runes[id].Comb[5] == 2 then _G["RCMain_Info"]:SetText("|cffF5F5F5"..RCText.Runes.Deactive.."|r");
 	elseif Runes[id].Comb[5] == 3 then _G["RCMain_Info"]:SetText("|cffFF4500"..RCText.Runes.NoMake.."|r");
 	elseif Runes[id].Comb[5] == 4 then _G["RCMain_Info"]:SetText("|cff32CD32"..RCText.Runes.TreasureHunt.."|r");
-	elseif Runes[id].Comb[5] == 5 then _G["RCMain_Info"]:SetText("|cffFF4500"..RCText.Runes.NoMake.."|r".."\n\n".."|cff32CD32"..RCText.Runes.TreasureHunt.."|r");
+	elseif Runes[id].Comb[5] == 5 then _G["RCMain_Info"]:SetText("|cffFF4500"..RCText.Runes.NoMake.."|r".."\n".."|cff32CD32"..RCText.Runes.TreasureHunt.."|r");
 	elseif Runes[id].Comb[5] == 6 then _G["RCMain_Info"]:SetText("|cff00B3FF"..RCText.Runes.AltMake.."|r");
 	else _G["RCMain_Info"]:SetText(""); end;
 	
 	for x=1,4,1 do
 		if Runes[id].Comb[x] ~= 0 then
 			RC_SetIconTemplate("RCPrev_Need"..x,Runes[Runes[id].Comb[x]].Name,Runes[Runes[id].Comb[x]].Icon);
+			_G["RCPrev_Need"..x]:Show();
 		else
 			RC_SetIconTemplate("RCPrev_Need"..x,"","");
+			_G["RCPrev_Need"..x]:Hide();
+		end;
+		
+		if x == 4 and Runes[id].Comb[1] == 0 and Runes[id].Comb[2] == 0 and Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 then
+			_G["RCMain_Needed"]:Hide();
+		else
+			_G["RCMain_Needed"]:Show();
 		end;
 	end;
 end
@@ -272,8 +283,10 @@ function RC_AktTier(tier)
 	if tier == nil then
 		return AktTier;
 	else
-		_G["RCMain_Tier"]:SetText(string.gsub(RCText.Menu.Tier,"<TIER>",tier));
-		AktTier = tier;
+		if tier == -1 then _G["RCMain_Tier"]:SetText(RCText.Menu.UnrankedTier);
+		else _G["RCMain_Tier"]:SetText(string.gsub(RCText.Menu.Tier,"<TIER>",tier)); end;
+		AktTier = tier;	
+		RCMain_Slider:SetValue(0);
 		return AktTier;
 	end;
 end
@@ -305,20 +318,27 @@ function RC_SetScroll(tier,start)
 		end
 	end
 	if (count-MaxScroll) > 0 then
-		RCMain_Slider:SetMinMaxValues(1,count-MaxScroll+1,1);	
+		RCMain_SliderScrollUpButton:Show();
+		RCMain_SliderScrollDownButton:Show();
+		RCMain_Slider:SetMinMaxValues(1,count-MaxScroll+1,1);
 	else
-		RCMain_Slider:SetMinMaxValues(1,1,1);	
+		RCMain_SliderScrollUpButton:Hide();
+		RCMain_SliderScrollDownButton:Hide();
+		RCMain_Slider:SetMinMaxValues(1,1,1);
 	end
 	if count >= 9 then
 		for i = 1,MaxScroll,1 do
 			RC_SetIconTemplate("RCList_Item"..i,Items[start+i-1].Name,Items[start+i-1].Icon);
+			_G["RCList_Item"..i]:Show();
 		end
 	else
 		for i=1,count,1 do
 			RC_SetIconTemplate("RCList_Item"..i,Items[start+i-1].Name,Items[start+i-1].Icon);
+			_G["RCList_Item"..i]:Show();
 		end
 		for i=count+1,9,1 do
 			RC_SetIconTemplate("RCList_Item"..i,"","");
+			_G["RCList_Item"..i]:Hide();
 		end
 	end
 end

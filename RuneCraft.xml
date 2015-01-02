@@ -30,39 +30,16 @@
 	<GameTooltip name="RCTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate" parent="UIParent"/>
 	
 	<!-- Tier Template -->
-	<Button name="RCTier_Template" virtual="true">
+	<Button name="RCTier_Template" inherits="UIPanelButtonTemplate" virtual="true">
 		<Size>
-			<AbsDimension x="75" y="30"/>
+			<AbsDimension x="110" y="30"/>
 		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="$parent_Titel" inherits="GameFontNormal" text="Error (maybe no text)" justifyH="CENTER">
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="4" y="8"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
 		<Scripts>
 			<OnClick>
 				RC_AktTier(this:GetID());
 				RC_SetScroll(this:GetID(),1);
 			</OnClick>
 		</Scripts>
-		<NormalTexture file="Interface\buttons\panelbutton-normal">
-			<Size>
-				<AbsDimension x="120" y="40"/>
-			</Size>
-		</NormalTexture>
-		<PushedTexture file="Interface\buttons\panelbutton-depress">
-			<Size>
-				<AbsDimension x="120" y="40"/>
-			</Size>
-		</PushedTexture>
 	</Button>
 	
 	<!--List Template-->
@@ -72,7 +49,7 @@
 		</Size>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Name" inherits="GameFontNormal" justifyH="Center" text="Error (maybe no text)">
+				<FontString name="$parent_Name" inherits="GameFontNormal" justifyH="Center" text="">
 					<Size>
 						<AbsDimension x="150" y="32"/>
 					</Size>
@@ -109,8 +86,8 @@
 					</OnLeave>
 				</Scripts>
 
-				<NormalTexture file="interface\addons\RuneCraft\Gfx\empty"/>
-               			<PushedTexture file="interface\addons\RuneCraft\Gfx\empty"/>
+				<NormalTexture file=""/>
+               			<PushedTexture file=""/>
 			</Button>
 		</Frames>
 		<Scripts>
@@ -138,7 +115,7 @@
 		</Size>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Name" inherits="GameFontNormal" text="Error (maybe no rune with this ID)">
+				<FontString name="$parent_Name" inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
@@ -167,7 +144,7 @@
 		</Size>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Name" inherits="GameFontNormal" justifyH="CENTER" justifyV="MIDDLE" text="Error (maybe no text)">
+				<FontString name="$parent_Name" inherits="GameFontNormal" justifyH="CENTER" justifyV="MIDDLE" text="">
 					<Size>
 						<AbsDimension x="95" y="32"/>
 					</Size>
@@ -253,11 +230,14 @@
 			</Layer>
 			<!--Tier Layer-->
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Tier" inherits="GameFontNormal" text="Error (maybe no text)">
+				<FontString name="$parent_Tier" inherits="GameFontNormal" text="" justifyH="CENTER">
+					<Size>
+						<AbsDimension x="155"/>
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
 							<Offset>
-								<AbsDimension x="60" y="28"/>
+								<AbsDimension x="22" y="28"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -265,11 +245,14 @@
 			</Layer>
 			<!--Needed Layer-->
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Needed" inherits="TitleFontNormal" text="Error (maybe no text)">
+				<FontString name="$parent_Needed" inherits="TitleFontNormal" text="" justifyH="CENTER">
+					<Size>
+						<AbsDimension x="145"/>
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
-								<AbsDimension x="243" y="247"/>
+								<AbsDimension x="218" y="247"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -277,11 +260,14 @@
 			</Layer>
 			<!--Rune Info-->
 			<Layer level="ARTWORK">
-				<FontString name="$parent_Info" inherits="GameFontHighlight" text="">
+				<FontString name="$parent_Info" inherits="GameFontHighlight" text="" justifyH="CENTER">
+					<Size>
+						<AbsDimension x="130"/>
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
-								<AbsDimension x="227" y="390"/>
+								<AbsDimension x="227" y="395"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -290,11 +276,20 @@
 		</Layers>
 		<Frames>
 			<!-- Tier Buttons -->
+			<Button name="$parent_Tier0" inherits="RCTier_Template" id="-1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-110" y="50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
 			<Button name="$parent_Tier1" inherits="RCTier_Template" id="0">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="50"/>
+							<AbsDimension x="-110" y="80"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -303,7 +298,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="80"/>
+							<AbsDimension x="-110" y="110"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -312,7 +307,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="110"/>
+							<AbsDimension x="-110" y="140"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -321,7 +316,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="140"/>
+							<AbsDimension x="-110" y="170"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -330,7 +325,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="170"/>
+							<AbsDimension x="-110" y="200"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -339,7 +334,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="200"/>
+							<AbsDimension x="-110" y="230"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -348,34 +343,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-80" y="230"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-			</Button>
-			<Button name="$parent_Tier8" inherits="RCTier_Template" id="7">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset>
-							<AbsDimension x="-80" y="260"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-			</Button>
-			<Button name="$parent_Tier9" inherits="RCTier_Template" id="8">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset>
-							<AbsDimension x="-80" y="290"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-			</Button>
-			<Button name="$parent_Tier10" inherits="RCTier_Template" id="9">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset>
-							<AbsDimension x="-80" y="320"/>
+							<AbsDimension x="-110" y="260"/>
 						</Offset>
 					</Anchor>
 				</Anchors>

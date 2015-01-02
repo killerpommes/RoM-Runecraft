@@ -17,8 +17,8 @@ return
 	},
 	Menu = {
 		Grade = "Grade ",
-		Tier1 = "Rank ",
-		Tier2 = " Runes",
+		Tier = "Rank <TIER> Runes",
+		UnrankedTier = "Unranked Runes",
 		Buildable = "Buildable Runes",
 		Needed = "Needed Runes",
 		BuildList = "Build List"
