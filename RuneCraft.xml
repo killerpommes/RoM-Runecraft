@@ -74,12 +74,12 @@
 				</Anchors>		
 				<Scripts>
 					<OnClick>
-						RCList_OnClick(this:GetParent());
-						RC_TreeList(this:GetParent());
+						RCList_OnClick(this:GetParent():GetID());
+						RC_TreeList(this:GetParent():GetID());
 					</OnClick>
 					<OnEnter>
 						RCTooltip:SetOwner(this:GetParent(), "ANCHOR_TOPRIGHT", 5, 0);
-						RCTooltip_Set(this:GetParent());
+						RCTooltip_Set(this:GetParent():GetID());
 					</OnEnter>
 					<OnLeave>
 						RCTooltip:Hide();
@@ -92,12 +92,12 @@
 		</Frames>
 		<Scripts>
 			<OnClick>
-				RCList_OnClick(this);
-				RC_TreeList(this);
+				RCList_OnClick(this:GetID());
+				RC_TreeList(this:GetID());
 			</OnClick>
 			<OnEnter>
 				RCTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 5, 0);
-				RCTooltip_Set(this);
+				RCTooltip_Set(this:GetID());
 			</OnEnter>
 			<OnLeave>
 				RCTooltip:Hide();
@@ -129,8 +129,11 @@
 		<Scripts>
 			<OnEnter>
 				RCTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 5, 0);
-				RCGrade_Tooltip(this);
+				RCGrade_Tooltip(this:GetID());
 			</OnEnter>
+			<OnClick>
+				RCGrade_OnClick(this:GetID());
+			</OnClick>
 			<OnLeave>
 				RCTooltip:Hide();
 			</OnLeave>
@@ -170,10 +173,10 @@
 				<Scripts>
 					<OnEnter>
 						RCTooltip:SetOwner(this:GetParent(), "ANCHOR_TOPRIGHT", 5, 0);
-						RCTooltip_Set(this:GetParent());
+						RCTooltip_Set(this:GetParent():GetID());
 					</OnEnter>
 					<OnClick>
-						RCList_OnClick(this:GetParent());
+						RCList_OnClick(this:GetParent():GetID());
 					</OnClick>
 					<OnLeave>
 						RCTooltip:Hide();
@@ -186,10 +189,10 @@
 		<Scripts>
 			<OnEnter>
 				RCTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 5, 0);
-				RCTooltip_Set(this);
+				RCTooltip_Set(this:GetID());
 			</OnEnter>
 			<OnClick>
-				RCList_OnClick(this);
+				RCList_OnClick(this:GetID());
 			</OnClick>
 			<OnLeave>
 				RCTooltip:Hide();
@@ -474,7 +477,7 @@
 				</Frames>
 			</ScrollFrame>
 			<!--Preview-->
-			<Button name="RCPrev_Icon" inherits="RCList_Template" id="99">
+			<Button name="RCPrev_Icon" inherits="RCList_Template" id="0">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
@@ -535,11 +538,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-				</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade2" inherits="RCGrade_Template" id="2">
 				<Anchors>
@@ -549,11 +547,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade3" inherits="RCGrade_Template" id="3">
 				<Anchors>
@@ -563,11 +556,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade4" inherits="RCGrade_Template" id="4">
 				<Anchors>
@@ -577,11 +565,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade5" inherits="RCGrade_Template" id="5">
 				<Anchors>
@@ -591,11 +574,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade6" inherits="RCGrade_Template" id="6">
 				<Anchors>
@@ -605,11 +583,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-              	</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade7" inherits="RCGrade_Template" id="7">
 				<Anchors>
@@ -619,11 +592,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade8" inherits="RCGrade_Template" id="8">
 				<Anchors>
@@ -633,11 +601,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-               	</Scripts>
 			</Button>
 			<Button name="RCPrev_Grade9" inherits="RCGrade_Template" id="9">
 				<Anchors>
@@ -647,11 +610,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<Button name="RCPrev_Grade10" inherits="RCGrade_Template" id="10">
 				<Anchors>
@@ -661,11 +619,6 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Scripts>
-                    <OnClick>
-						RCGrade_OnClick(this);
-					</OnClick>
-                </Scripts>
 			</Button>
 			<!--Needed Runes-->
 			<Button name="RCPrev_Need1" inherits="RCNeed_Template">

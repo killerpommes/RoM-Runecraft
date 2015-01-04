@@ -1,3 +1,28 @@
+=== 0.60 ===
+	- new database of runes:
+		- language-based,
+		- clean,
+		- added patch 6.2 runes,
+		- added some alternative makes,
+		- corrected ranks of runes based on http://runesofmagic.gamepedia.com/Rune_Transmutation (1-6 and unranked),
+		- getting runes by id, no name (fix for Runes of Magic translators mistakes - the same rune names),
+	- locales:
+		- Italian translation (thanks to Retcha88),
+		- cleaner locale files,
+		- automatically locale system,
+		- auto-downloading locales from CurseForge,
+	- frame:
+		- hiding unused fields: in scroll list and needed runes,
+		- hiding scrollbar arrows when no elements overflow,
+		- returning to scrollbar top when tab changed,
+		- header text for TCTree from locale,
+		- cleaner buttons,
+		- cleaner center alignment of texts,
+	- code:
+		- updated old getglobal() to _G[],
+		- cleaner code of if statements for display active rune - changed to simple elseif and for loop,
+		- removed unnecessary Scripts from Grade frames (already contained in template),
+
 === 0.57-2 ===
 	- Bugfix for TW runes database
 		Thanks to e65130

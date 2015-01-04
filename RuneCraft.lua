@@ -57,36 +57,35 @@ function RCMain_OnEvent(this,event)
 	end
 end
 --OnClick
-function RCList_OnClick(this)
-	if RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText()) then
-		RC_SetPrev(RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText()));
+function RCList_OnClick(id)
+	if Runes[id]["Name"] ~= nil then
+		RC_SetPrev(id);
 	end
 end
-function RCGrade_OnClick(this)
-	if RC_InArray(Runes,_G["RCPrev_Icon_Name"]:GetText()) then
-		local id = RC_InArray(Runes,_G["RCPrev_Icon_Name"]:GetText());
+function RCGrade_OnClick(number)
+	local id = _G["RCPrev_Icon"]:GetID();
+	if Runes[id]["Name"] ~= nil then
 		if Runes[id].ID ~= "" then
-			local itemid = string.format("%X",string.format("%d","0x"..Runes[id].ID)+this:GetID()-1)
-			local link = RC_StringToLink(Runes[id].Name.." "..RC_Num2Rom(this:GetID()),itemid);
+			local itemid = string.format("%X",string.format("%d","0x"..Runes[id].ID)+number-1)
+			local link = RC_StringToLink(Runes[id].Name.." "..RC_Num2Rom(number),itemid);
 			ChatEdit_AddItemLink(link)
 		end
 	end
 end
 --Tooltip
-function RCGrade_Tooltip(this)
-	if RC_InArray(Runes,_G["RCPrev_Icon_Name"]:GetText()) then
-		local id = RC_InArray(Runes,_G["RCPrev_Icon_Name"]:GetText());
+function RCGrade_Tooltip(number)
+	local id = _G["RCPrev_Icon"]:GetID();
+	if Runes[id]["Name"] ~= nil then
 		if Runes[id].ID ~= "" then
-			local itemid = string.format("%X",string.format("%d","0x"..Runes[id].ID)+this:GetID()-1)
-			local link = RC_StringToLink(Runes[id].Name.." "..RC_Num2Rom(this:GetID()),itemid);
+			local itemid = string.format("%X",string.format("%d","0x"..Runes[id].ID)+number-1)
+			local link = RC_StringToLink(Runes[id].Name.." "..RC_Num2Rom(number),itemid);
 			RCTooltip:SetHyperLink(link);
 			RCTooltip:Show();
 		end
 	end
 end
-function RCTooltip_Set(this)
-	if RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText()) then
-		local id = RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText())
+function RCTooltip_Set(id)
+	if Runes[id]["Name"] ~= nil then
 		if Runes[id].ID ~= "" then
 			RCTooltip:SetHyperLink(RC_StringToLink(Runes[id].Name, Runes[id].ID));
 			RCTooltip:Show();
@@ -97,27 +96,68 @@ end
 ---- Erstellt BaumArray
 function RC_Tree(start,id,ids)
 	local baum = {};
-	if Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
+	
+	--[[if Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
+		local name_id, name_ids = Runes[id].Name, Runes[ids].Name;
+		
+		if Runes[id].Type > 0 then
+			local comb_id, comb_ids = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]), RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2]);
+		
+			if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] ~= 0 then
+				comb_id  = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
+				comb_ids = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2],Runes[ids].Comb[3],Runes[ids].Comb[4]);
+			elseif Runes[id].Comb[3] ~= 0 then
+				comb_id  = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
+				comb_ids = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2],Runes[ids].Comb[3]);
+			end;
+		end;
+	
 		if start ~= 0 then
 			if Runes[id].Type > 0 then
-				baum[1] = Runes[id].Name;
-				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+				baum[1] = name_id;
+				baum[2] = comb_id;
 			else
-				baum[1] = Runes[id].Name;
+				baum[1] = name_id;
 				baum[2] = 0;
 			end
 		else
 			if Runes[id].Type > 0 then
-				baum[1] = Runes[id].Name;
+				baum[1] = name_id;
+				baum[2] = {};
+				baum[2] = comb_id;
+				baum[3] = name_ids;
+				baum[4] = {};
+				baum[4] = comb_ids;
+			else
+				baum[1] = name_id;
+				baum[2] = 0;
+				baum[3] = name_ids;
+				baum[4] = 0;
+			end
+		end
+	end
+	]]--
+	if Runes[id].Comb[3] == 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
+		if start ~= 0 then
+			if Runes[id].Type > 0 then
+				baum[1] = id;
+				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
+			else
+				baum[1] = id;
+				baum[2] = 0;
+			end
+		else
+			if Runes[id].Type > 0 then
+				baum[1] = id;
 				baum[2] = {};
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2]);
-				baum[3] = Runes[ids].Name;
+				baum[3] = ids;
 				baum[4] = {};
 				baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2]);
 			else
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = 0;
-				baum[3] = Runes[ids].Name;
+				baum[3] = ids;
 				baum[4] = 0;
 			end
 		end
@@ -125,24 +165,24 @@ function RC_Tree(start,id,ids)
 	if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] == 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
 		if start ~= 0 then
 			if Runes[id].Type > 0 then
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
 			else
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = 0;
 			end
 		else
 			if Runes[id].Type > 0 then
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = {};
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3]);
-				baum[3] = Runes[ids].Name;
+				baum[3] = ids;
 				baum[4] = {};
 				baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2],Runes[ids].Comb[3]);
 			else
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = 0;
-				baum[3] = Runes[ids].Name;
+				baum[3] = ids;
 				baum[4] = 0;
 			end
 		end
@@ -150,34 +190,35 @@ function RC_Tree(start,id,ids)
 	if Runes[id].Comb[3] ~= 0 and Runes[id].Comb[4] ~= 0 and Runes[id].Comb[5] ~= 2 and Runes[id].Comb[5] ~= 3 and Runes[id].Comb[5] ~= 5 then
 		if start ~= 0 then
 			if Runes[id].Type > 0 then
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
 			else
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = 0;
 			end
 		else
 			if Runes[id].Type > 0 then
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = {};
 				baum[2] = RC_Tree(0,Runes[id].Comb[1],Runes[id].Comb[2],Runes[id].Comb[3],Runes[id].Comb[4]);
-				baum[3] = Runes[ids].Name;
+				baum[3] = ids;
 				baum[4] = {};
 				baum[4] = RC_Tree(0,Runes[ids].Comb[1],Runes[ids].Comb[2],Runes[ids].Comb[3],Runes[ids].Comb[4]);
 			else
-				baum[1] = Runes[id].Name;
+				baum[1] = id;
 				baum[2] = 0;
-				baum[3] = Runes[ids].Name;
+				baum[3] = ids;
 				baum[4] = 0;
 			end
 		end
 	end
+
 	return baum;
 end
 
-function RC_TreeList(this)
-	if RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText()) then
-		local id = RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText());
+function RC_TreeList(id)
+	--if RC_InArray(Runes,_G[this:GetName().."_Name"]:GetText()) then
+	if Runes[id]["Name"] ~= nil then
 		local tree = RC_Tree(1,id,id);
 		RC_TreeClear();
 		RC_TreeFollow(tree,1);
@@ -189,7 +230,7 @@ function RC_TreeFollow(tbl,space)
         if type(v) == "table" then
         else
 			if v ~= 0 then
-				RC_AddLine(tostring(v));
+				RC_AddLine(v);
 				--Sol.io.Print(enter..tostring(v));
 			end
         end
@@ -205,7 +246,7 @@ end
 
 function RC_AddLine(str)
 	if str ~= "--------------------" then
-		local id = RC_InArray(Runes,str);
+		local id = str;
 		for i=1,40,1 do
 			if _G["RCTree_Line"..i]:GetText() == "" then
 				if Runes[id].Type == 0 then
@@ -247,6 +288,7 @@ end
 ---- Setzt Preview
 function RC_SetPrev(id)
 	RC_SetIconTemplate("RCPrev_Icon",Runes[id].Name,Runes[id].Icon);
+	_G["RCPrev_Icon"]:SetID(id);
 	for i=1,10,1 do
 		local gtext = RCText.Menu.Grade..i.." : ";
 		if Runes[id].ID ~= "" then
@@ -265,9 +307,11 @@ function RC_SetPrev(id)
 	for x=1,4,1 do
 		if Runes[id].Comb[x] ~= 0 then
 			RC_SetIconTemplate("RCPrev_Need"..x,Runes[Runes[id].Comb[x]].Name,Runes[Runes[id].Comb[x]].Icon);
+			_G["RCPrev_Need"..x]:SetID(Runes[id].Comb[x]);
 			_G["RCPrev_Need"..x]:Show();
 		else
 			RC_SetIconTemplate("RCPrev_Need"..x,"","");
+			_G["RCPrev_Need"..x]:SetID(0);
 			_G["RCPrev_Need"..x]:Hide();
 		end;
 		
@@ -292,6 +336,7 @@ function RC_AktTier(tier)
 end
 ----Bilded Itemlink aus Name und ID
 function RC_StringToLink(name, id)
+	name = string.gsub(name, " [\(]"..RCText.Runes.ShortAlt.."[\)]", "");
 	local s = "";
 	s = "|Hitem:"..id..":1:0:0:0:0:0:0:0:0:0:0|h|cffffffff["..name.."]|r|h";
 	return s;
@@ -315,6 +360,7 @@ function RC_SetScroll(tier,start)
 		if value.Type == tier then
 			count=count+1;
 			Items[count] = value;
+			Items[count]["Index"] = index;
 		end
 	end
 	if (count-MaxScroll) > 0 then
@@ -329,15 +375,18 @@ function RC_SetScroll(tier,start)
 	if count >= 9 then
 		for i = 1,MaxScroll,1 do
 			RC_SetIconTemplate("RCList_Item"..i,Items[start+i-1].Name,Items[start+i-1].Icon);
+			_G["RCList_Item"..i]:SetID(Items[start+i-1].Index);
 			_G["RCList_Item"..i]:Show();
 		end
 	else
 		for i=1,count,1 do
 			RC_SetIconTemplate("RCList_Item"..i,Items[start+i-1].Name,Items[start+i-1].Icon);
+			_G["RCList_Item"..i]:SetID(Items[start+i-1].Index);
 			_G["RCList_Item"..i]:Show();
 		end
 		for i=count+1,9,1 do
 			RC_SetIconTemplate("RCList_Item"..i,"","");
+			_G["RCList_Item"..i]:SetID(0);
 			_G["RCList_Item"..i]:Hide();
 		end
 	end

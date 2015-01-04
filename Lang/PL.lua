@@ -17,7 +17,7 @@ return
 	},
 	Menu = {
 		Grade = "Stopień ",
-		Tier = "Runy stopnia <TIER>",
+		Tier = "Runy rangi <TIER>",
 		UnrankedTier = "Runy bez rangi",
 		Buildable = "Możliwe do stworzenia",
 		Needed = "Potrzebne runy",
