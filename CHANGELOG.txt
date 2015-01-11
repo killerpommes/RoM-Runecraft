@@ -1,3 +1,7 @@
+=== 0.61 ===
+	-locales:
+		- Russian translation (thanks to Turbid121),
+
 === 0.60 ===
 	- new database of runes:
 		- language-based,
