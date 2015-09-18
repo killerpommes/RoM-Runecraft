@@ -1,3 +1,7 @@
+=== 0.62 ===
+	-locales:
+		- Spanish translation updated, thanks to Sathariel (Ridire),
+
 === 0.61 ===
 	-locales:
 		- Russian translation (thanks to Turbid121),

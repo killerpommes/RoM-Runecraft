@@ -9,7 +9,7 @@ local AktTier = 0;
 
 local MaxScroll = 9;
 
-local VERSION = "v0.60";
+local VERSION = "v0.62";
 
 -- OnLoad
 function RCMain_OnLoad(this)
