@@ -11,24 +11,24 @@ return
 --@localization(locale="itIT", format="lua_table", handle-subnamespaces="subtable", handle-unlocalized="english")@
 --@do-not-package@
 {
-	PrintOut = {
-		Say = "loaded! /rc to open RuneCraft",
-		Description = "Its a combination Guide for Runes."
-	},
 	Menu = {
-		Grade = "Grade ",
-		Tier1 = "Rank ",
-		Tier2 = " Runes",
-		Buildable = "Buildable Runes",
-		Needed = "Needed Runes",
-		BuildList = "Build List"
+		Buildable = "Rune costruibili",
+		BuildList = "Lista delle Combinazioni",
+		Grade = "Grado",
+		Needed = "Rune necessarie",
+		Tier = "Rune Livello <TIER>",
+		UnrankedTier = "Rune non classificate",
+	},
+	PrintOut = {
+		Description = "È una combinazione di GUID per rune.",
+		Say = "caricato! /rc per aprire RuneCraft",
 	},
 	Runes = {
-		Deactive = "Deactivated", -- comb 5 = 2
-		NoMake = "Not produceable", --comb 5 = 3
-		TreasureHunt = "From mini-games", --comb 5 = 4
-		AltMake = "Alternative recipe", -- comb 5 = 6
-		ShortAlt = "alt." -- not working now, text is directly in runes database
-	}
+		AltMake = "Ricetta alternativa",
+		Deactive = "Disattivato",
+		NoMake = "Non producibile",
+		ShortAlt = "alt.",
+		TreasureHunt = "Dai Mini Giochi",
+	},
 }
 --@end-do-not-package@
